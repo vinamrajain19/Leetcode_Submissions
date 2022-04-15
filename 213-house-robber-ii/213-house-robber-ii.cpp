@@ -37,7 +37,7 @@ public:
             prev = curr;
         }
         
-        int ans2 = prev;
-        return max(ans1,ans2);
+        
+        return max(ans1,prev);
     }
 };
