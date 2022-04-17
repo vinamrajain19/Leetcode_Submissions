@@ -1,16 +1,28 @@
 class Solution {
 public:
-   int dp[1001][1001];
-    int solve(int m,int n,int row,int col){
-        if(row >= m || col >= n) return 0;
-        if(row == m-1 and col == n-1) return 1;
-        if(dp[row][col] != -1) return dp[row][col];
-        
-        return dp[row][col] = solve(m,n,row+1,col) + solve(m,n,row,col+1);
-    } 
     
     int uniquePaths(int m, int n) {
-        memset(dp,-1,sizeof(dp));
-        return solve(m,n,0,0);
+        vector<int> prev(n,0);
+        
+        for(int i = 0;i<m;i++){
+            vector<int> temp(n,0);
+            for(int j = 0;j<n;j++){
+                if(i == 0 and j == 0){
+                    temp[j] = 1;
+                    continue;
+                } 
+                int up = 0;
+                int left = 0;
+                
+                if(i>0) up = prev[j];
+                if(j>0) left = temp[j-1];
+                
+                temp[j] = up+left;
+                
+            }
+            prev = temp;
+        }
+        
+        return prev[n-1];
     }
 };
