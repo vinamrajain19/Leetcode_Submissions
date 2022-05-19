@@ -2,8 +2,7 @@ class Solution {
 public:
     int rob(vector<int>& nums) {
         int n = nums.size();
-       
-        
+    
         int prev = nums[0];
         int prev2 = 0;
         
@@ -12,7 +11,8 @@ public:
             if(i>=2){
                 pick += prev2;
             }
-            int notpick = 0 + prev;
+            
+            int notpick =  prev;
             
             int curr = max(pick,notpick);
             
@@ -29,7 +29,7 @@ public:
             if(i>=2){
                 pick += prev2;
             }
-            int notpick = 0 + prev;
+            int notpick = prev;
             
             int curr = max(pick,notpick);
             
