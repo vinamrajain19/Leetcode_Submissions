@@ -1,25 +1,31 @@
 class Solution {
 public:
-    int change(int amount, vector<int>& coins) {
-        int t[coins.size()+1][amount+1];
-        for(int i = 0;i<=coins.size();i++){
-            t[i][0] = 1;
-        }
-        for(int i = 0;i<=amount;i++){
-            t[0][i] = 0;
+    int change(int amt, vector<int>& coins) {
+       int n = coins.size();
+        vector<int> prev(amt+1,0);
+        
+        for(int j = 0;j<amt + 1;j++){
+            if(j%coins[0] == 0) prev[j] = 1;
+            else prev[j] = 0;
         }
         
-        for(int i = 1;i<coins.size()+1;i++){
-            for(int j = 1;j<amount+1;j++){
-                if(coins[i-1]<=j){
-                    t[i][j] = t[i][j-coins[i-1]]+t[i-1][j];
+        for(int idx = 1;idx < n;idx++){
+            vector<int> temp(amt+1,0);
+            for(int tar = 0;tar <= amt ;tar++){
+                
+                int no = prev[tar];
+                
+                int take = 0;
+                
+                if(coins[idx] <= tar){
+                    take = temp[tar-coins[idx]];
                 }
-                else{
-                    t[i][j] = t[i-1][j];
-                }
+                
+                temp[tar] = (no+take);
             }
+            prev = temp;
         }
-        
-        return t[coins.size()][amount];
+        int ans = prev[amt];
+        return ans;
     }
 };
