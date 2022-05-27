@@ -1,26 +1,39 @@
 class Solution {
 public:
     
-    int help(vector<int> &p,int idx,int buy,vector<vector<int>> &dp){
+   /* int help(vector<int> &p,int idx,int buy,vector<vector<int>> &dp){
         if(idx == p.size()) return 0;
         
         if(dp[idx][buy] != -1) return dp[idx][buy];
         
         //buy -> buy or not buy -> in buy -> p -> negative -> add in profit
         if(buy){
-            return dp[idx][buy] = max(-p[idx] + help(p,idx+1,1-buy,dp), help(p,idx+1,buy,dp));
+            return dp[idx][buy] = max(-p[idx] + help(p,idx+1,0,dp), help(p,idx+1,1,dp));
         }
         
         //sell -> sell it or not sell -> sell -> positive -> add in profit
         else{
-            return dp[idx][buy] = max(p[idx] + help(p,idx+1,1-buy,dp), help(p,idx+1,buy,dp));
+            return dp[idx][buy] = max(p[idx] + help(p,idx+1,1,dp), help(p,idx+1,0,dp));
         }
     }
+    */
     int maxProfit(vector<int>& p) {
         int n = p.size();
         
-        vector<vector<int>> dp(n,vector<int>(2,-1));
+       vector<int> prev(2,0),curr(2,0);
         
-        return help(p,0,1,dp);
+        for(int i = n-1;i>=0;i--){
+            for(int j = 0;j<=1;j++){
+                if(j){
+                    curr[j] = max(-p[i] + prev[0],prev[1]);
+                }
+                else{
+                    curr[j] =  max(p[i] + prev[1],prev[0]);
+                }
+            }
+            prev = curr;
+        }
+        
+        return prev[1];
     }
 };
