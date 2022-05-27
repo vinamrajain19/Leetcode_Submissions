@@ -1,26 +1,30 @@
 class Solution {
 public:
-    vector<vector<int>> insert(vector<vector<int>>& arr, vector<int>& newarr) {
+    vector<vector<int>> merge(vector<vector<int>>& arr) {
+        int n = arr.size();
+        if(n<=1) return arr;
+        
         vector<vector<int>> ans;
         
-        for(int i = 0;i<arr.size();i++){
-            
-            if(newarr[0] > arr[i][1]){
-                ans.push_back(arr[i]);
+        sort(arr.begin(),arr.end());
+        
+        vector<int> temp = arr[0];
+        for(int i = 1;i<n;i++){
+            if(temp[1] < arr[i][0]){
+               //no merge -> push temp -> ans
+                ans.push_back(temp);
+                temp = arr[i];
             }
-            else if(newarr[1] < arr[i][0]){
-                ans.push_back(newarr);
-                newarr = arr[i];
+            else{
+                //merge 
+                temp[1] = max(temp[1],arr[i][1]);
             }
-            
-            else if(arr[i][1] >= newarr[0] or arr[i][0] <= newarr[1]){
-                //merge
-                newarr[1] = max(newarr[1],arr[i][1]);
-                newarr[0] = min(newarr[0],arr[i][0]);
-            }
-
         }
-        ans.push_back(newarr);
+        ans.push_back(temp);
         return ans;
     }
 };
+
+
+
+  
