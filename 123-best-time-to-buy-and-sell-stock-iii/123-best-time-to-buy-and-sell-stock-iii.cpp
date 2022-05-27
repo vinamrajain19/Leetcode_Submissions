@@ -1,7 +1,7 @@
 class Solution {
 public:
     int help(vector<int> &p,int idx,int buy,vector<vector<vector<int>>> &dp,int count){
-        if(idx == p.size() || count >= 2) return 0;
+        if(idx == p.size() || count == 0) return 0;
         
         if(dp[idx][buy][count] != -1) return dp[idx][buy][count];
         
@@ -12,14 +12,14 @@ public:
         
         //sell -> sell it or not sell -> sell -> positive -> add in profit
         else{
-            return dp[idx][buy][count] = max(p[idx] + help(p,idx+1,1,dp,count+1), help(p,idx+1,0,dp,count));
+            return dp[idx][buy][count] = max(p[idx] + help(p,idx+1,1,dp,count-1), help(p,idx+1,0,dp,count));
         }
     }
         
     int maxProfit(vector<int>& p) {
         int n = p.size();
-        vector<vector<vector<int>>> dp(n,vector<vector<int>>(2,vector<int>(2,-1)));
+        vector<vector<vector<int>>> dp(n,vector<vector<int>>(2,vector<int>(3,-1)));
         
-        return help(p,0,1,dp,0);
+        return help(p,0,1,dp,2);
     }
 };
