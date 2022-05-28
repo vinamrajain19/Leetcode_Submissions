@@ -17,11 +17,9 @@ class Solution{
         priority_queue<int> q;
         for(int i = 0;i<=l+r;i++){
             q.push(arr[i]);
-        }
-        int j = 0;
-        while(j != l+r-k+1){
-            q.pop();
-            j++;
+            if(q.size() > k){
+                q.pop();
+            }
         }
         return q.top();
     }
