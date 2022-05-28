@@ -19,17 +19,25 @@ public:
     int maxProfit(vector<int>& p) {
         int n = p.size();
         
-        vector<vector<int>> dp(n+2,vector<int>(2,0));
+       // vector<vector<int>> dp(n+2,vector<int>(2,0));
+       
+    // Space optimised using three vector< of size 2
+        vector<int> ahead1(2,0);
+        vector<int> ahead2(2,0);
+        vector<int> curr(2,0);
         
         for(int i = n-1;i>=0;i--){
             //buy -> buy -> 1 so we omit that for loop
-            dp[i][1] = max(-p[i] + dp[i+1][0],dp[i+1][1]);
+            curr[1] = max(-p[i] + ahead1[0],ahead1[1]);
             
             //sell -> sell -> 0
-            dp[i][0] = max(p[i]+dp[i+2][1],dp[i+1][0]);
+            curr[0] = max(p[i]+ahead2[1],ahead1[0]);
+            
+            ahead2 = ahead1;
+            ahead1 = curr;
         }
         
-        return dp[0][1];
+        return ahead1[1];
     }
     
 };
