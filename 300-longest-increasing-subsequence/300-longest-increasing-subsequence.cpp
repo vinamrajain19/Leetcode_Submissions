@@ -16,7 +16,7 @@ public:
     }
     
     int lengthOfLIS(vector<int>& nums) {
-        vector<vector<int>> dp(nums.size() + 1,vector<int>(nums.size() + 1,0));
+     /*   vector<vector<int>> dp(nums.size() + 1,vector<int>(nums.size() + 1,0));
         
         for(int ind = nums.size()-1;ind>=0;ind--){
             for(int prev = ind-1;prev >= -1;prev--){
@@ -31,6 +31,21 @@ public:
                 dp[ind][prev+1] = max(no,take);
             }
         }
-        return dp[0][-1+1];
-    }
+        return dp[0][-1+1]; */
+        vector<int> temp;    // T.C. = O(n log(n)) -> lower_bound
+        temp.push_back(nums[0]);
+        
+        int len = 1;
+        for(int i = 1;i<nums.size();i++){
+            if(nums[i] > temp.back()){
+                temp.push_back(nums[i]);
+                len++;
+            }
+            else{
+                int ind = lower_bound(temp.begin(),temp.end(),nums[i]) - temp.begin();
+                temp[ind] = nums[i];
+            }
+        }
+        return len;
+    } 
 };
