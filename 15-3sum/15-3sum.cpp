@@ -7,8 +7,8 @@ public:
         set<vector<int>> s;   // to store and remove the duplicate answers
 		
         for(int i = 0 ; i < n; i++){
-                if ((i>0) && (nums[i]==nums[i-1]))
-                     continue;
+              //  if ((i>0) && (nums[i]==nums[i-1]))
+                //     continue
                 int x = i+1 , y = n-1;
                 
                 while(x < y){
