@@ -1,6 +1,5 @@
 class Solution {
 public:
-    int t[2001][2001];
     
     
     bool ispalindrome(string &s,int i,int j){
@@ -12,30 +11,25 @@ public:
         return true;
     }
     
-    int mcm(string &s,int i,int j){
-        if(i>=j) return 0;
+    int f(string &s,int i,vector<int> &dp){
         
-        if(ispalindrome(s,i,j)) return 0;
-        
-        if(t[i][j] != -1) return t[i][j];
-        
-        int mn = INT_MAX;
-        for(int k = i;k <= j-1;k++){
-            if(ispalindrome(s,i,k)){
-                int temp = 1 + mcm(s,k+1,j);
-                mn = min(mn,temp);
+        if(i == s.size()) return 0;
+        if(dp[i] != -1) return dp[i];
+    
+        int mn = 1e9;
+        for(int j = i;j<s.size();j++){
+            if(ispalindrome(s,i,j)){
+                int cost = 1 + f(s,j+1,dp);
+                mn  = min(mn,cost);
             }
-            
         }
-        
-        return t[i][j] = mn;
+        return dp[i] = mn;
     }
     
 
 
     int minCut(string s) {
-        memset(t,-1,sizeof(t));
-        int n = s.size();
-        return mcm(s,0,n-1);
+        vector<int> dp(s.size(),-1);
+        return f(s,0,dp)-1;
     }
 };
