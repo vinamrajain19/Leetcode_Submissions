@@ -1,10 +1,10 @@
 class Solution {
 public:
     int myAtoi(string s) {
-        int r = 0;
         stringstream ss;
+        int ans = 0;
         ss << s;
-        ss >> r;
-        return r;
+        ss >> ans;
+        return ans;
     }
 };
