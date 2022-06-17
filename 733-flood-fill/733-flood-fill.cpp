@@ -10,8 +10,7 @@ public:
         vector<vector<int>> vis(image.size(),vector<int>(image[0].size(),0));
         vis[sr][sc] = 1;
         while(q.size() != 0){
-            int n = q.size();
-            while(n--){
+            
                 int x = q.front().first;
                 int y = q.front().second;
                 q.pop();
@@ -40,7 +39,6 @@ public:
                     q.push({x,y+1});
                 }
                 
-            }
         }
         image[sr][sc] = newcolor;
         return image;
