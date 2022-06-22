@@ -59,17 +59,4 @@ public:
     }
 };
 
-     /*   int prev = pq.top().second;
-        int prevDist = pq.top().first;
-        pq.pop();
-        
-        for(auto it : adj[prev])
-        {
-            int next = it.first;
-            int nextDist = it.second;
-            if(distance[next] > distance[prev] + nextDist)
-            {
-                distance[next] = distance[prev] + nextDist;
-                pq.push({distance[next], next});
-            }
-        }*/
+     
