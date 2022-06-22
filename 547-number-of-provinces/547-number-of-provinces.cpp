@@ -22,17 +22,16 @@ public:
         }
         
         for(int i = 0;i<is.size();i++){
-            for(int j = 0;j<is[0].size();j++){
+            for(int j = i+1;j<is[0].size();j++){
                 if(is[i][j] == 1){
                     unnion(i,j);
                 }
             }
         }
         
-        set<int> s;
         int c = 0;
         for(int i = 0;i<par.size();i++){
-            if(par[i] == i) c++;
+            if(par[i] == i) c++; // no of parents
         }
         return c;
         
