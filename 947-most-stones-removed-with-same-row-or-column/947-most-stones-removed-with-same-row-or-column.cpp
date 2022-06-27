@@ -34,7 +34,7 @@ public:
         
         int ans = 0;
         for(int i = 0;i<n;i++){
-            if(i == par[i]){
+            if(i == find(i)){
                 ans++;
             }
         }
