@@ -15,8 +15,8 @@ public:
             pq.pop();
             
             for(auto [x,y] : adj[node]){
-                if(dis[x] > y + dis[node]){
-                    dis[x] = y + dis[node];
+                if(dis[x] > y + d){
+                    dis[x] = y + d;
                     pq.push({dis[x],x});
                 }
             }
