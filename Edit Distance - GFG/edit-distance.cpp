@@ -12,12 +12,14 @@ class Solution {
         if(i<0) return j+1;
         if(j<0) return i+1;
         
-        if(dp[i][j] != -1) return dp[i][j];
+        if(dp[i][j] != -1) return dp[i][j];  
         
         if(s[i] == t[j]){
-            return dp[i][j] =  f(s,t,i-1,j-1,dp);
+            return dp[i][j] =  f(s,t,i-1,j-1,dp);       // match -> i-1,j-1
         }
         
+        
+        // insert -> (i,j-1) delete -> (i-1,j)  repalce -> (i-1,j-1)
         return dp[i][j] = 1 + min({f(s,t,i-1,j-1,dp) , f(s,t,i-1,j,dp) , f(s,t,i,j-1,dp)});
     }
     
