@@ -6,8 +6,8 @@ public:
         
         if(dp[idx][prev][x] != -1) return dp[idx][prev][x];
         
-        int take = -1e9;
-        int no = -1e9;
+        int take = 0;
+        int no = 0;
         
         if(x){
             no = f(idx+1,prev,x,nums);
