@@ -13,8 +13,7 @@ public:
             }
             else{
                 ans.push_back(w[i]);
-                t = w[i];
-                sort(t.begin(),t.end());
+                t = x;
             }
         }
         return ans;
