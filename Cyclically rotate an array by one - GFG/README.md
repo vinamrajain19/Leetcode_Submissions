@@ -1,7 +1,6 @@
 # Cyclically rotate an array by one
 ## Easy
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given an array,&nbsp;rotate the&nbsp;array by one position in clock-wise direction.</span><br>
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array,&nbsp;rotate the&nbsp;array by one position in clock-wise direction.</span><br>
 &nbsp;</p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
@@ -25,7 +24,7 @@ A[] = {9, 8, 7, 6, 4, 2, 1, 3}
 <p>&nbsp;</p>
 
 <p><span style="font-size:18px"><strong>Your Task:&nbsp;&nbsp;</strong><br>
-You don't need to read input or print anything. Your task is to complete the function <strong>rotate()</strong>&nbsp;which takes the array <strong>A[]</strong> and its size <strong>N </strong>as inputs and modify the array.</span></p>
+You don't need to read input or print anything. Your task is to complete the function <strong>rotate()</strong>&nbsp;which takes the array <strong>A[]</strong> and its size <strong>N </strong>as inputs and modify the array in place.</span></p>
 
 <p>&nbsp;</p>
 
@@ -37,5 +36,4 @@ You don't need to read input or print anything. Your task is to complete the fun
 <p><span style="font-size:18px"><strong>Constraints:</strong><br>
 1&lt;=N&lt;=10<sup>5</sup><br>
 0&lt;=a[i]&lt;=10<sup>5</sup></span></p>
- <p></p>
-            </div>
+</div>
