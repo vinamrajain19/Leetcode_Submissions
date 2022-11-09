@@ -1,11 +1,18 @@
 # Minimize the Heights II
-## Medium 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given an array <strong>arr[]</strong>&nbsp;denoting heights of <strong>N</strong> towers and a positive integer <strong>K</strong>, you <strong>have to</strong> modify the height&nbsp;of each&nbsp;tower either by increasing or decreasing them by <strong>K</strong> only <strong>once</strong>. After modifying, height should be a <strong>non-negative</strong> integer.&nbsp;<br>
-Find out the minimum possible difference of the height&nbsp;of shortest and longest towers after you have modified each tower.</span></p>
+## Medium
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array <strong>arr[]</strong>&nbsp;denoting heights of <strong>N</strong> towers and a positive integer <strong>K. </strong></span></p>
 
-<p><span style="font-size:18px">You can find a slight modification of the problem&nbsp;<a href="https://practice.geeksforgeeks.org/problems/minimize-the-heights-i/1/" target="_blank">here</a>.<br>
-Note: It is compulsory to increase or decrease&nbsp;by K to each tower.</span></p>
+<p><span style="font-size:18px">For <strong>each </strong>tower, you must perform <strong>exactly one</strong> of the following operations <strong>exactly once</strong>.</span></p>
+
+<ul>
+	<li><span style="font-size:18px"><strong>Increase </strong>the height of the tower by <strong>K</strong></span></li>
+	<li><span style="font-size:18px"><strong>Decrease </strong>the height of the tower by <strong>K</strong></span></li>
+</ul>
+
+<p><span style="font-size:18px">Find out the <strong>minimum </strong>possible difference between the height&nbsp;of the shortest and tallest towers after you have modified each tower.</span></p>
+
+<p><span style="font-size:18px">You can find a slight modification of the problem&nbsp;<a href="https://practice.geeksforgeeks.org/problems/minimize-the-heights-i/1/">here</a>.<br>
+<strong>Note:</strong> It is <strong>compulsory </strong>to increase or decrease the height by K for each tower. <strong>After</strong> the operation, the resultant array should <strong>not</strong> contain any <strong>negative integers</strong>.</span></p>
 
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
@@ -36,7 +43,7 @@ the largest and the smallest is 17-6 = 11.&nbsp;
 
 <p><br>
 <span style="font-size:18px"><strong>Your Task:</strong><br>
-You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong>getMinDiff()</strong>&nbsp;which takes the <strong>arr[], n</strong>&nbsp;and&nbsp;<strong>k&nbsp;</strong>as input parameters and returns an integer&nbsp;denoting the minimum difference.</span></p>
+You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong>getMinDiff()</strong>&nbsp;which takes the <strong>arr[], n,</strong>&nbsp;and&nbsp;<strong>k&nbsp;</strong>as input parameters and returns an integer&nbsp;denoting the minimum difference.</span></p>
 
 <p><br>
 <span style="font-size:18px"><strong>Expected Time Complexity:</strong>&nbsp;O(N*logN)<br>
@@ -46,5 +53,4 @@ You don't need to read input or print anything. Your task is to complete the fun
 1 ≤ K&nbsp;≤ 10<sup>4</sup><br>
 1 ≤ N&nbsp;≤ 10<sup>5</sup><br>
 1 ≤ Arr[i] ≤ 10<sup>5</sup></span></p>
- <p></p>
-            </div>
+</div>
