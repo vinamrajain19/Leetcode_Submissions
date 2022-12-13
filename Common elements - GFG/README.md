@@ -1,7 +1,6 @@
 # Common elements
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given three arrays sorted in increasing order. Find the elements that are common in all three arrays.<br>
+## Easy
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given three arrays sorted in increasing order. Find the elements that are common in all three arrays.<br>
 <strong>Note:&nbsp;</strong></span><span style="font-size:18px">can you take care of the duplicates without using any additional Data Structure?</span></p>
 
 <p><strong><span style="font-size:18px">Example 1:</span></strong></p>
@@ -30,5 +29,4 @@ If there are no such elements return an empty array. In this case the output wil
 <p><span style="font-size:18px"><strong>Constraints:</strong><br>
 1 &lt;= n1, n2, n3 &lt;= 10^5<br>
 The array elements can be both positive or negative integers. </span></p>
- <p></p>
-            </div>
+</div>
