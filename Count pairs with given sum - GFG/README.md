@@ -1,7 +1,6 @@
 # Count pairs with given sum
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given an array&nbsp;of <strong>N</strong> integers, and an integer&nbsp;<strong>K</strong>, find the number of pairs of elements&nbsp;in the array whose sum is equal to <strong>K</strong>.</span></p>
+## Easy
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array&nbsp;of <strong>N</strong> integers, and an integer&nbsp;<strong>K</strong>, find the number of pairs of elements&nbsp;in the array whose sum is equal to <strong>K</strong>.</span></p>
 
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
@@ -39,5 +38,4 @@ You don't need to read input or print anything. Your task is to complete the fun
 1 &lt;= Arr[i] &lt;= 10<sup>6</sup></span></p>
 
 <p>&nbsp;</p>
- <p></p>
-            </div>
+</div>
