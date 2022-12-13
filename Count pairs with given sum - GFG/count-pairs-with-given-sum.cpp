@@ -1,28 +1,29 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial template for C++
 
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 //User function template for C++
 
 class Solution{   
 public:
-    int getPairsCount(int nums[], int n, int k) {
-        unordered_map<int,int> m;
+    int getPairsCount(int arr[], int n, int k) {
         int ans = 0;
-        
-        for(int i=0;i<n;i++){
-            if(m[k-nums[i]])  ans += m[k-nums[i]];
-             m[nums[i]]++;
+        unordered_map<int,int> m;
+        for(int i =0;i<n;i++){
+            if(m.find(k-arr[i]) != m.end()){
+                ans += m[k-arr[i]];
+            }
+            m[arr[i]]++;
         }
         
         return ans;
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() {
     int t;
@@ -40,4 +41,5 @@ int main() {
     }
     
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
