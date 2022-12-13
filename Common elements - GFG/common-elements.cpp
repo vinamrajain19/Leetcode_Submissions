@@ -1,18 +1,18 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution
 {
     public:    
        vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
         {
-         set<int> ans;
+           set<int> ans;
           
-         int i=0,j=0,k=0;
-         while(i<n1 && j<n2 && k<n3){
+            int i=0,j=0,k=0;
+            while(i<n1 && j<n2 && k<n3){
              if(A[i]==B[j] && B[j]==C[k])
              {
              ans.insert(A[i]);
@@ -24,9 +24,9 @@ class Solution
                   
              }
              else if(B[j]<C[k])
-             j++;
+                j++;
              else k++;
-         }
+            }
             
             
          vector<int> res;
@@ -34,11 +34,12 @@ class Solution
          for(auto it:ans)
            res.push_back(it);
          return res;
+            
         }
 
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main ()
 {
@@ -64,4 +65,5 @@ int main ()
             cout << res[i] << " "; 
         cout << endl;
     }
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
