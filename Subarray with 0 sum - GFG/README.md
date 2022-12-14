@@ -1,7 +1,6 @@
 # Subarray with 0 sum
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given an array of&nbsp;positive and negative numbers. Find if there is a <strong>subarray </strong>(of size at-least one) with <strong>0 sum</strong>.</span></p>
+## Easy
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array of&nbsp;positive and negative numbers. Find if there is a <strong>subarray </strong>(of size at-least one) with <strong>0 sum</strong>.</span></p>
 
 <p><strong><span style="font-size:18px">Example 1:</span></strong></p>
 
@@ -42,5 +41,4 @@ You only need to complete the function <strong>subArrayExists()&nbsp;</strong>th
 -10<sup>5</sup> &lt;= a[i] &lt;= 10<sup>5</sup></span></p>
 
 <p>&nbsp;</p>
- <p></p>
-            </div>
+</div>
