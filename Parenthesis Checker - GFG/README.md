@@ -1,7 +1,6 @@
 # Parenthesis Checker
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given an expression string <strong>x</strong>. Examine whether the pairs and the orders of “{“,”}”,”(“,”)”,”[“,”]” are correct in exp.<br>
+## Easy
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an expression string <strong>x</strong>. Examine whether the pairs and the orders of “{“,”}”,”(“,”)”,”[“,”]” are correct in exp.<br>
 For example, the function should return 'true' for exp = “[()]{}{[()()]()}” and 'false' for exp = “[(])”.</span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
@@ -49,5 +48,4 @@ This is a <strong>function </strong>problem. You only need to complete the funct
 1 ≤ |x| ≤ </span><span style="font-size:18px">32000</span></p>
 
 <p><span style="font-size:18px"><strong>Note</strong>: The drive code prints "balanced" if function return true, otherwise it prints "not balanced".</span></p>
- <p></p>
-            </div>
+</div>
