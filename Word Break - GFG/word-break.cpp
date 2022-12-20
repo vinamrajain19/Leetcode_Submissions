@@ -1,11 +1,11 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial template for C++
 
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 //User function template for C++
 
 // A : given string to search
@@ -14,37 +14,36 @@ using namespace std;
 class Solution
 {
 public:
-
-
-    bool f(string s,int idx,unordered_set<string> &d,vector<int> &dp){
+    
+    unordered_set<string> s;
+    int dp[1101];
+    
+    bool f(string &A,int idx){
         
-        if(idx == s.size()){
-            return true;
-        }
-        
+        if(idx == A.size()) return true;
         
         if(dp[idx] != -1) return dp[idx];
         
-        
-        for(int k = idx;k<s.size();k++){
-            if(d.find(s.substr(idx,k-idx + 1)) != d.end()){
-                //present
-                if(f(s,k+1,d,dp)) return dp[idx] = true;
+        for(int i = idx;i<A.size();i++){
+            string t = A.substr(idx,i-idx+1);
+            if(s.find(t) != s.end()){
+                if(f(A,i+1)) return dp[idx] =true;
             }
+            
         }
+        return dp[idx] =  false;
         
-        return dp[idx] = false;
     }
-
-
-    int wordBreak(string s, vector<string> &B) {
-        unordered_set<string> d(B.begin(),B.end());
-        vector<int> dp(s.size(),-1);
-        return f(s,0,d,dp);
+    
+    int wordBreak(string A, vector<string> &B) {
+        //code here
+        memset(dp,-1,sizeof(dp));
+        for(auto it : B) s.insert(it);
+        return f(A,0);
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main(){
     int t;
@@ -64,4 +63,5 @@ int main(){
         cout<<ob.wordBreak(line, dict)<<"\n";
     }
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
