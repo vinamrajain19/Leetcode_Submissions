@@ -112,7 +112,7 @@ class Solution
             sum %= 10;
             Node * x = new Node(sum);
             temp -> next = x;
-            temp = temp -> next;
+            temp = x;
         }
         
         Node * ans = r(n->next);
