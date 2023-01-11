@@ -1,7 +1,6 @@
 # Intersection Point in Y Shapped Linked Lists
-## Medium 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given two singly linked lists of size <strong>N</strong> and <strong>M, </strong>write a program to get the point where two linked lists intersect each other.</span></p>
+## Medium
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given two singly linked lists of size <strong>N</strong> and <strong>M, </strong>write a program to get the point where two linked lists intersect each other.</span></p>
 
 <p>&nbsp;</p>
 
@@ -13,7 +12,7 @@ LinkList2 = 10-&gt;common
 common = 15-&gt;30-&gt;NULL
 <strong>Output: 1</strong>5
 <strong>Explanation:
-</strong><img alt="Y ShapedLinked List" class="aligncenter size-full wp-image-2753 img-responsive" src="https://contribute.geeksforgeeks.org/wp-content/uploads/linked.jpg" style="height:334px; width:388px" title="Y ShapedLinked List"></span>
+</strong><img alt="Y ShapedLinked List" class="aligncenter size-full wp-image-2753" src="https://contribute.geeksforgeeks.org/wp-content/uploads/linked.jpg" style="height:334px; width:388px" title="Y ShapedLinked List"></span>
 </pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
@@ -53,5 +52,4 @@ You don't need to read input or print anything. The task is to complete the func
 -1000&nbsp;≤&nbsp;value ≤&nbsp;1000</span></p>
 
 <p>&nbsp;</p>
- <p></p>
-            </div>
+</div>
