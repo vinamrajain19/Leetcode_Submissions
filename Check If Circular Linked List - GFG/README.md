@@ -1,7 +1,6 @@
 # Check If Circular Linked List
 ## Easy
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given <strong>head</strong>, the head&nbsp;of a singly linked list, find if the linked list is circular or not.&nbsp;A linked list is called circular if it not NULL terminated and all nodes are connected in the form of a cycle. An empty linked list is considered as circular.</span></p>
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given <strong>head</strong>, the head&nbsp;of a singly linked list, find if the linked list is circular or not.&nbsp;A linked list is called circular if it not NULL terminated and all nodes are connected in the form of a cycle. An empty linked list is considered as circular.</span></p>
 
 <p><span style="font-size:18px"><strong>Note:</strong> The linked list does not contains any inner loop.</span></p>
 
@@ -28,5 +27,4 @@ The task is to complete the function isCircular() which checks if the given link
 
 <p><span style="font-size:18px"><strong>Constraints:</strong><br>
 1 &lt;=Number of nodes&lt;= 100</span></p>
- <p></p>
-            </div>
+</div>
