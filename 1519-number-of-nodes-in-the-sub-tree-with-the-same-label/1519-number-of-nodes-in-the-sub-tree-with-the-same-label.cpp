@@ -1,5 +1,14 @@
 class Solution {
 public:
+ 
+ // Intuition
+ // If we think in terms of DFS, we need a running count of the character frequency in all the child nodes. //The only issue is that if we maintain a running count, our frequency map might contain the frequency of //all the node (including parent). So how do we solve this?
+
+//Approach
+//This can be achieved in DFS by maintaining a Pre Order count of the char frequency till current node and //subtracting it from the Post Order frequency as shown below.
+
+    
+    
     vector<int> ans;
     void dfs(vector<int> adj[],string &labels,vector<int> &freq,int node,int par){
         
