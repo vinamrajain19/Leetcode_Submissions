@@ -1,6 +1,11 @@
 class Solution {
 public:
     
+    // observation:
+// a node can have at most two longest chains from child nodes
+// if a node have more than two chains, take the longest two
+// i.e. one parent node + longest + second longest
+    
     int ans = -1e9;
     int dfs(vector<int> adj[],int node,string &s){
         
