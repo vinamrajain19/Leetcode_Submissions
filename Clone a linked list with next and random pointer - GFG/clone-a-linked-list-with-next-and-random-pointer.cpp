@@ -41,6 +41,7 @@ class Solution
         
         temp = head;
         
+        // arb pointer clone
         while(temp){
             m[temp] -> arb = m[temp->arb];
             temp = temp -> next;
