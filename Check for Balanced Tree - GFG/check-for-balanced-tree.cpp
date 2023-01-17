@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for C++
 
 
@@ -85,7 +85,7 @@ Node* buildTree(string str) {
 }
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /* A binary tree node structure
 
 struct Node
@@ -104,27 +104,29 @@ struct Node
 class Solution{
     public:
     //Function to check whether a binary tree is balanced or not.
-    int h(Node * root){
+    bool ans = true;
+    int f(Node * root){
         if(root == NULL) return 0;
         
-        int l = h(root->left);
-        if(l == -1) return -1;
+        int l = max(0,f(root->left));
+        int r = max(0,f(root->right));
         
-        int r = h(root->right);
-        if(r== -1) return -1;
-        
-        if(abs(l-r) > 1) return -1;
-        
-        return 1+max(l,r);
+        if(abs(l-r) > 1){
+            ans = false;
+            return -1;
+        }
+    
+        return 1 + max(l,r);
     }
     bool isBalanced(Node *root)
     {
-        return h(root) != -1;
+       f(root);
+       return ans;
     }
 };
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 /* Driver program to test size function*/
 
@@ -145,4 +147,5 @@ int main() {
     }
     return 0;
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
