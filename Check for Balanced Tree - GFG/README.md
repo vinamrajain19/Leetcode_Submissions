@@ -1,7 +1,6 @@
 # Check for Balanced Tree
-##  Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given a binary tree, find if it is height balanced or not.&nbsp;<br>
+## Easy
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a binary tree, find if it is height balanced or not.&nbsp;<br>
 A tree is height balanced if difference between heights of left and right subtrees is <strong>not more than one</strong> for all nodes of tree.&nbsp;</span></p>
 
 <p><span style="font-size:18px"><strong>A height balanced tree</strong><br>
@@ -55,5 +54,4 @@ Hence balanced.<strong> </strong></span>
 
 <p><span style="font-size:18px"><strong>Expected time complexity:&nbsp;</strong>O(N)</span><br>
 <span style="font-size:18px"><strong>Expected auxiliary space:&nbsp;</strong>O(h) , where h = height of tree</span></p>
- <p></p>
-            </div>
+</div>
