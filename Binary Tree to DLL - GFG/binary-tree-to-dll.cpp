@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -8,6 +8,13 @@ struct Node
     int data;
     Node* left;
     Node* right;
+    Node(){
+	    left = right = NULL;
+	}
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
 };
 
 // Utility function to create a new Tree Node
@@ -87,7 +94,7 @@ Node* buildTree(string str)
 
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /* Structure for tree and linked list
 
 struct Node
@@ -138,7 +145,7 @@ class Solution
 
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 
 /* Function to print nodes in a given doubly linked list */
@@ -191,4 +198,5 @@ int main()
   return 0;
 }
 
-  // } Driver Code Ends
+
+// } Driver Code Ends
