@@ -1,7 +1,6 @@
 # Transform to Sum Tree
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given a Binary Tree of size N , where each node can have positive or negative values. Convert this to a tree where each node contains the sum of the left and right sub trees of the original tree. The values of leaf nodes are changed to 0.</span></p>
+## Easy
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a Binary Tree of size N , where each node can have positive or negative values. Convert this to a tree where each node contains the sum of the left and right sub trees of the original tree. The values of leaf nodes are changed to 0.</span></p>
 
 <p><strong><span style="font-size:18px">Example 1:</span></strong></p>
 
@@ -41,5 +40,4 @@ You dont need to read input or print anything. Complete the function<strong> toS
 
 <p><span style="font-size:18px"><strong>Constraints:</strong><br>
 1 ≤ N&nbsp;≤ 10<sup>4</sup></span></p>
- <p></p>
-            </div>
+</div>
