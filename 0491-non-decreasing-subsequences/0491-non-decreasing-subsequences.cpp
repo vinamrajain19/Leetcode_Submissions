@@ -17,9 +17,9 @@ public:
             temp.push_back(nums[idx]);
             f(nums,temp,idx+1,idx);
             temp.pop_back();
-            f(nums,temp,idx+1,prev);
+           // f(nums,temp,idx+1,prev);
         }
-        else f(nums,temp,idx+1,prev);
+        f(nums,temp,idx+1,prev);
     }
     
     vector<vector<int>> findSubsequences(vector<int>& nums) {
