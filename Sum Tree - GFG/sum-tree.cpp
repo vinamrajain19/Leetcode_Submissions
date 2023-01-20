@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -83,7 +83,7 @@ Node* buildTree(string str)
 }
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /*  Tree node
 struct Node
 {
@@ -95,26 +95,35 @@ struct Node
 class Solution
 {
     public:
-    int sum(Node * root){
-        if(root == NULL) return 0;
-        return root->data+sum(root->left) + sum(root->right);
-    }
-    bool isSumTree(Node* root)
+    
+     bool isSumTree(Node* root)
     {
-         if(root == NULL or (root->left == NULL and root->right == NULL)){
-             return true;
-         }
-         
-         if(sum(root->left) + sum(root->right) == root->data){
-             return isSumTree(root->left) and isSumTree(root->right);
-         }
-         
-         return false;
-         
+        if(root == NULL)
+            return true;
+            
+        bool v = true;
+        checkSumTree(root,v);
+        return v;
+    }
+
+    int checkSumTree(Node *root , bool &v){
+
+        if(root == NULL) return 0;
+        
+        int left = checkSumTree(root->left,v);
+
+        int right = checkSumTree(root->right,v);
+
+        if(!root->left and !root->right )   return root->data;
+
+        if(left+right!=root->data) v= false;
+
+        return (left+right+root->data);
+
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main()
 {
@@ -130,4 +139,5 @@ int main()
         cout <<ob.isSumTree(root) << endl;
     }
     return 1;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
