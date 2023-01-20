@@ -1,7 +1,6 @@
 # Sum Tree
-## Medium 
-<div class="problem-statement">
-                <p></p><div class="entry-content">
+## Medium
+<div class="problems_problem_content__Xm_eO"><div class="entry-content">
 <p><span style="font-size:18px">Given a Binary Tree. Return <strong>true</strong>&nbsp;if, for every node <strong>X</strong>&nbsp;in the tree other than the&nbsp;leaves, its value is equal to the sum of its left subtree's value and its right subtree's value. Else return <strong>false</strong>.</span></p>
 
 <p><span style="font-size:18px">An empty tree is also a Sum Tree as the sum of an empty tree can be considered to be 0. A leaf node is also considered a Sum Tree.</span></p>
@@ -51,5 +50,4 @@ You don't need to read input or print anything. Complete the function <strong>is
 <span style="font-size:18px"><strong>Constraints:</strong><br>
 1 ≤ number of nodes ≤ 10<sup>4</sup></span></p>
 </div>
- <p></p>
-            </div>
+</div>
