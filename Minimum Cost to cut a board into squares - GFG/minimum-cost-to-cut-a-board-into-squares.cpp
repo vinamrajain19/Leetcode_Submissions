@@ -24,25 +24,25 @@ public:
         
         while(i < M-1 and j < N-1){
             if(X[i] > Y[j]){
-                ans += X[i] * v;
-                h++;
+                ans += X[i] * h;
+                v++;
                 i++;
             }
             
             else{
-                ans += Y[j] * h;
-                v++;
+                ans += Y[j] * v;
+                h++;
                 j++;
             }
         }
         
         
         while(i < M-1){
-            ans += X[i++] * v;
+            ans += X[i++] * h;
         }
         
         while(j < N-1){
-            ans += Y[j++] * h;
+            ans += Y[j++] * v;
         }
         
         return ans;
