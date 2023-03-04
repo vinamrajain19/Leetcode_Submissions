@@ -16,7 +16,7 @@ public:
             if (nums[j] == minK) mini = j;       //update the index of recently observed minK
 			if (nums[j] == maxK) maxi = j;       //update the index of recently observed maxK
 
-            cnt += max(0LL, min(mini, maxi) - i + 1);  //if 2nd part of max is -ve means we don't have minK and maxK in window now so max(0, -ve) = 0, no increment
+            if(mini != -1 and maxi != -1) cnt += max(0LL, min(mini, maxi) - i + 1);  //if 2nd part of max is -ve means we don't have minK and maxK in window now so max(0, -ve) = 0, no increment
 
             j++;                                 //keep increasing the window towards right
         }
