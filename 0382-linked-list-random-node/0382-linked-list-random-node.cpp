@@ -26,7 +26,7 @@ public:
     int getRandom() {
         int x = rand() % len;
         ListNode * t = h;
-        int ans = 0;
+       
         while(x--){
             t = t -> next;
         }
