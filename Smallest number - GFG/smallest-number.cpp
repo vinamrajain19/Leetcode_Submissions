@@ -5,24 +5,36 @@ using namespace std;
 // } Driver Code Ends
 class Solution{   
 public:
-    string smallestNumber(int S, int D){
-        // code here 
-        string s = "";
-        long long st = pow(10,D-1);
-        long long e = pow(10,D)-1;
-        for(long long i =st;i<=e;i++){
-            
-            string x = to_string(i);
-            int sum = 0;
-            for(int j=0;j<x.size();j++){
-                sum += (x[j] - '0');
-            }
-            
-            if(sum == S) return x;
+    int find(int s, int d)
+    {
+        if(s>9)
+        {
+            return 9;
         }
-        
-        
-        return "-1";
+        else if(s>=1 && s<=9 && d>1)
+        {
+            return s-1;
+        }
+        else
+        {
+            return s;
+        }
+    }
+
+    string smallestNumber(int S, int D)
+    {
+        string ans = "";
+        while(D!=0)
+        {
+            int x = find(S, D);
+            ans = ans+to_string(x);
+            S = S-x;
+            D--;
+        }
+
+        if(D==0 && S!=0) return "-1";
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
 
