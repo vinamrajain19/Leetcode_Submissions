@@ -34,5 +34,6 @@ public:
         
         temp -> next = NULL;
         return head -> next;
+        
     }
 };
