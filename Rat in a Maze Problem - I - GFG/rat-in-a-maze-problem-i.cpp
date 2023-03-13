@@ -10,47 +10,50 @@ using namespace std;
 
 class Solution{
     public:
-   vector<string> findPath(vector<vector<int>> &m, int n) {
-        vector<string> ans;
-        vector<vector<int>> vis(n,vector<int>(n,0));
-        if(m[0][0] == 1){
-            helper("",0,0,n,m,ans,vis);
-        }
-        return ans;
-    }
+    vector<string> ans;
     
-    void helper(string p,int r,int c,int n,vector<vector<int>> &m,vector<string> &ans,vector<vector<int>> &vis){
-        if(r == n-1 and c == n-1){
-            ans.push_back(p);
+    void f(vector<vector<int>> &m,int n,string s,int i,int j,vector<vector<int>> &vis){
+        if(i < 0 or j < 0 or i >= n or j >= n or vis[i][j]) return;
+        
+        if(i == n-1 and j == n-1){
+            ans.push_back(s);
             return;
         }
         
-        if(r+1<n and m[r+1][c] == 1 and vis[r+1][c] == 0){
-            vis[r][c] = 1;
-            helper(p+'D',r+1,c,n,m,ans,vis);
-            vis[r][c] = 0;
+        if(i+1 < n and m[i+1][j] == 1 and vis[i+1][j] == 0){
+            vis[i][j] = 1;
+            f(m,n,s+'D',i+1,j,vis);
+            vis[i][j] = 0;
         }
         
-        if(c-1>=0 and m[r][c-1] == 1 and vis[r][c-1] == 0){
-            vis[r][c] = 1;
-            helper(p+'L',r,c-1,n,m,ans,vis);
-            vis[r][c] = 0;
+        if(i-1 >= 0 and m[i-1][j] == 1 and vis[i-1][j] == 0){
+            vis[i][j] = 1;
+            f(m,n,s+'U',i-1,j,vis);
+            vis[i][j] = 0;
         }
         
-        if(c+1<n and m[r][c+1] == 1 and vis[r][c+1] == 0){
-            vis[r][c] = 1;
-            helper(p+'R',r,c+1,n,m,ans,vis);
-            vis[r][c] = 0;
+        if(j+1 < n and m[i][j+1] == 1 and vis[i][j+1] == 0){
+            vis[i][j] = 1;
+            f(m,n,s+'R',i,j+1,vis);
+            vis[i][j] = 0;
         }
         
-        if(r-1>=0 and m[r-1][c] == 1 and vis[r-1][c] == 0){
-            vis[r][c] = 1;
-            helper(p+'U',r-1,c,n,m,ans,vis);
-            vis[r][c] = 0;
+        if(j - 1 >=0   and m[i][j-1] == 1 and vis[i][j-1] == 0){
+            vis[i][j] = 1;
+            f(m,n,s+'L',i,j-1,vis);
+            vis[i][j] = 0;
         }
         
-       
-
+    }
+    
+    vector<string> findPath(vector<vector<int>> &m, int n) {
+        // Your code goes here
+        if(m[0][0] == 0) return {"-1"};
+        
+        vector<vector<int>> vis(n,vector<int>(n,0));
+        
+        f(m,n,"",0,0,vis);
+        return ans;
     }
 };
 
