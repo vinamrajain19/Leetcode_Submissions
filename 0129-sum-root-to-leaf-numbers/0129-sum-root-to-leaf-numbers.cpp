@@ -11,26 +11,25 @@
  */
 class Solution {
 public:
-     int ans = 0;
-     void f(TreeNode * root,string t){
-         if(root == NULL) return;
-         
-         if(root->left == NULL and root->right == NULL){
-             t.push_back(root->val + '0');
-             ans += stoi(t);
-             cout<<ans<<endl;
-             return;
-         }
-        
-
-        f(root->left,t+to_string(root->val));
-        f(root->right,t+to_string(root->val)); 
-     
+    void findSum(TreeNode* root, int temp ,int &ans){
+        if(root==NULL){
+            return;
+        }
+        temp=temp*10+root->val;
+        //If reached the last node
+        if(root->left==NULL and root->right==NULL){
+            ans+=temp;
+        }
+        findSum(root->left,temp,ans);
+        findSum(root->right,temp,ans);
     }
-    
-    
     int sumNumbers(TreeNode* root) {
-        f(root,"");
+        if(root==NULL){
+            return 0;
+        }
+        //Output
+        int ans=0;
+        findSum(root,0,ans);
         return ans;
     }
 };
