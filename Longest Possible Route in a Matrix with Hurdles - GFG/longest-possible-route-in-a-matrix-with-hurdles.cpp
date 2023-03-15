@@ -8,34 +8,33 @@ using namespace std;
 // } Driver Code Ends
 //User function Template for C++
 
-class Solution {
+class Solution {   // -2147483648
 public:
     
-    void solve(vector<vector<int>> matrix, int &maxi, int sum, int xs, int ys, int xd, int yd){
-        if(xs<0 || ys<0 || xs>=matrix.size() || ys>=matrix[0].size() || matrix[xs][ys]==0)
-            return;
-        if(xs==xd && ys==yd){
-            maxi=max(maxi,sum);
-            return;
-        }
+    int f(vector<vector<int>> &m,int xs,int ys,int xd,int yd,int i,int j,vector<vector<int>> &vis){
+        if( i< 0 or j < 0 or  i>=m.size() or j >= m[0].size() or vis[i][j] == 1 or m[i][j] == 0) return INT_MIN;
         
-        matrix[xs][ys]=0;
+        if(i == xd and j == yd) return 0;
         
-        solve(matrix,maxi,sum+1,xs+1,ys,xd,yd);
-        solve(matrix,maxi,sum+1,xs,ys+1,xd,yd);
-        solve(matrix,maxi,sum+1,xs-1,ys,xd,yd);
-        solve(matrix,maxi,sum+1,xs,ys-1,xd,yd);
+        vis[i][j] = 1;
         
-        matrix[xs][ys]=1;
+        int a = 1 + f(m,xs,ys,xd,yd,i+1,j,vis);
+        int b = 1 + f(m,xs,ys,xd,yd,i-1,j,vis);
+        int c = 1 + f(m,xs,ys,xd,yd,i,j+1,vis);
+        int d = 1 + f(m,xs,ys,xd,yd,i,j-1,vis);
+        
+        vis[i][j] = 0;
+        
+        return max({a,b,c,d});
         
     }
     
     int longestPath(vector<vector<int>> matrix, int xs, int ys, int xd, int yd)
     {
         // code here
-        int maxi=-1;
-        solve(matrix,maxi,0,xs,ys,xd,yd);
-        return maxi==0?-1:maxi;
+        vector<vector<int>> vis(matrix.size(),vector<int>(matrix[0].size(),0));
+        if( f(matrix,xs,ys,xd,yd,xs,ys,vis) <= -1) return -1;
+        return f(matrix,xs,ys,xd,yd,xs,ys,vis);
     }
 };
 
