@@ -9,7 +9,10 @@ using namespace std;
 class Solution
 {
     public:
-    //Function to find the largest number after k swaps.
+    //Function to find the largest number after k swaps. 
+    // Time Complexity: O(n^k): For every recursive call n recursive calls is generated until the value of k is 0. So total recursive calls are O((n)^k).
+    // S.C = O(n)
+    
     string ans;
     void f(string str,int k,int idx){
         ans = max(ans,str);
@@ -19,6 +22,8 @@ class Solution
         char ch = *max_element(str.begin()+idx+1,str.end());
         
         // two option swap it or not 
+        
+        //swap
         if(ch > str[idx]){
             for(int i = idx+1;i<str.size();i++){
                 if(ch == str[i]){
@@ -29,6 +34,7 @@ class Solution
             
             }
         }
+        // not swap
         f(str,k,idx+1);
         
     }
