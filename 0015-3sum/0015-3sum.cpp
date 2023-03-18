@@ -5,7 +5,7 @@ public:
         //sort
         sort(nums.begin(),nums.end());
         
-        for(unsigned int i = 0; i < nums.size();i++){
+        for( int i = 0; i < nums.size();i++){
            // initialize left and right 
            //to handle duplicates
             if(i > 0 && nums[i]==nums[i-1])
