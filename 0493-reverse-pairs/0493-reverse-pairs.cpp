@@ -4,28 +4,50 @@ public:
     
     long long int ans = 0;
     
-    void merge(vector<int> &arr,long long N,long long s,long long m,long long e){
+    void merge(vector<int> &nums,long long N,long long low,long long mid,long long high){
         
         
-        long long i = s;
-        long long j = m+1;
-        long long k = 0;
-
-        //long long temp[e-s+1];
+        int i=low;
+        int j=mid+1;
         
-        while(i <= m and j <= e){
-            if((long long)arr[i] > (long long)2*arr[j]){
-                ans += m-i+1;
+        vector<int>temp(high-low+1);
+        
+        while(i<=mid and j<=high)
+        {
+            if(nums[i]>2*1ll*nums[j])
+            {
+                ans+=(mid-i+1);
                 j++;
-                //temp[k++] = arr[j++];
             }
-            else{
-                //temp[k++] = arr[i++];
+            else
+            {
                 i++;
             }
         }
         
-        sort(arr.begin() + s,arr.begin() + e +1);
+        i=low;
+        j=mid+1;
+        int k=0;
+        
+        while(i<=mid and j<=high)
+        {
+            if(nums[i]<nums[j])
+            {
+                temp[k++]=nums[i++];
+            }
+            else
+            {
+                temp[k++]=nums[j++];
+            }
+        }
+        
+        while(i<=mid)
+            temp[k++]=nums[i++];
+        while(j<=high)
+            temp[k++]=nums[j++];
+        
+        for(i=low;i<=high;i++)
+            nums[i]=temp[i-low];
         return;
     }
     
