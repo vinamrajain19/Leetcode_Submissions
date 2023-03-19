@@ -19,7 +19,6 @@ public:
             else e = mid-1;
         }
         
-        s = 0;
         e = nums.size()-1;
         
          while(s <= e){
