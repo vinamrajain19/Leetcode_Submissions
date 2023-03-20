@@ -6,13 +6,13 @@ public:
         
         while(s<e){
             int mid = (s+e)/2;
-            if(nums[mid]>nums[mid+1]){
-                e = mid;
-                
-            }
-            else{
+            if(mid +1 < nums.size() and nums[mid] < nums[mid+1]){
                 s = mid+1;
             }
+            else if(mid - 1>= 0 and nums[mid-1] > nums[mid]){
+                e = mid-1;
+            }
+            else return mid;
         }
         
         return s;
