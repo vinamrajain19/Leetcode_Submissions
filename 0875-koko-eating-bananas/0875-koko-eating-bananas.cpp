@@ -12,13 +12,14 @@ public:
             for(int i= 0;i<p.size();i++){
                 x += (p[i]/m);
                 if(p[i]%m) x++;
-               }
+            }
+            
+            
             if(x <= h){
                 e = m;
-                }
-            else s = m+1;
             }
-        return s;
-                
+            else s = m+1;
+        }
+        return s;      
     }
 };
