@@ -1,32 +1,36 @@
 class Solution {
 public:
-    static bool cmp(vector<int> &a,vector<int> &b){
-        if(a[1] == b[1]) return a[0] < b[0];
-        return a[1] < b[1];
-    }
+    
     
     vector<vector<int>> insert(vector<vector<int>>& in, vector<int>& ni) {
-        in.push_back(ni);
-        
-        sort(in.begin(),in.end());
-        
         vector<vector<int>> ans;
         
-      
-        vector<int> t = in[0];
+        int i = 0;
         
-        for(int i = 1;i<in.size();i++){
-            if(t.back() >= in[i][0]){
-                t[0] = min(t[0],in[i][0]);
-                t[1] = max(t[1],in[i][1]);
-            }
-            else{
-                ans.push_back(t);
-                t = in[i];
-            }
+        
+        // case 1 till where have not had the pos for new interval;
+        while(i < in.size() and in[i][1] <  ni[0]){
+            ans.push_back(in[i]);
+            i++;
         }
         
-        ans.push_back(t);
+        
+        // case 2-> we have got the pos for new interval
+        while(i < in.size() and in[i][0] <= ni[1]){
+            ni[0] = min(in[i][0],ni[0]);
+            ni[1] = max(in[i][1],ni[1]);
+            i++;
+        }
+        
+        ans.push_back(ni);
+        
+        // case 3 -> now put all in as it is
+        
+        while(i < in.size()){
+            ans.push_back(in[i]);
+            i++;
+        }
+        
         return ans;
         
         
