@@ -7,7 +7,7 @@ public:
             if(i > can) return false;
             can = max(can,i+nums[i]);
             
-            //if(can == nums.size()-1) return true;
+            if(can == nums.size()-1) return true;
         }
         
         return true;
