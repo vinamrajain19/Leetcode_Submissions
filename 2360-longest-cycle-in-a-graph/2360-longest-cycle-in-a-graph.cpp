@@ -29,6 +29,7 @@ int longestCycle(vector<int>& edges) {
     }
 
     for(int i=0; i<n; i++){
+        if(visited[i] == 1) continue;
         unordered_map<int, int> mp; //keeps track of distance
         dfs(i, 0, mp);
     }
