@@ -17,7 +17,7 @@ The possible operations are permitted:</span></p>
 s = "geek", t = "gesek"
 <strong>Output:</strong>&nbsp;1
 <strong>Explanation: </strong>One operation is required 
-inserting 's' between two 'e's of str1.</span>
+inserting 's' between two 'e's of s.</span>
 </pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
