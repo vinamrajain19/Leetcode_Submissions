@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minInsertions(string s) {
-         string s2 = string(s.rbegin(),s.rend());
+        string s2 = string(s.rbegin(),s.rend());
         
         int m = s.size();
         int n = s2.size();
@@ -9,10 +9,6 @@ public:
         vector<int> prev(n+1,0),curr(n+1,0);
         
         prev[0] = 0; 
-        
-        for(int j = 0;j<=n;j++){
-            prev[j] = 0;
-        }
         
         //main code
         for(int i = 1;i<m+1;i++){
@@ -26,6 +22,7 @@ public:
             }
             prev = curr;
         }
-        return s.size() - prev[n];
+        
+        return s.size() - curr[n];
     }
 };
