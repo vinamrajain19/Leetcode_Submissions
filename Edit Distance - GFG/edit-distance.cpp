@@ -1,13 +1,11 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution {
   public:
-  
-  
-    int f(string s,string t,int i,int j,vector<vector<int>> &dp){
+   int f(string s,string t,int i,int j,vector<vector<int>> &dp){
         if(i < 0 and j < 0) return 0;
         if(i<0) return j+1;
         if(j<0) return i+1;
@@ -27,10 +25,9 @@ class Solution {
         vector<vector<int>> dp(s.size(),vector<int>(t.size(),-1));
         return f(s,t,s.size()-1,t.size()-1,dp);
     }
-    
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 int main() {
     int T;
     cin >> T;
@@ -43,4 +40,5 @@ int main() {
     }
     return 0;
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
