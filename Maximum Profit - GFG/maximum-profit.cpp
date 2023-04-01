@@ -10,7 +10,7 @@ using namespace std;
 class Solution {
   public:
   
-    int dp[1001][3][101];
+    int dp[501][3][201];
     int f(vector<int> &prices,int idx,int buy,int cnt,int k){
 
         if(idx >= prices.size()) return 0;
