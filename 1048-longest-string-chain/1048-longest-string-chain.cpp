@@ -1,44 +1,55 @@
 class Solution {
 public:
-    bool comapre(string &s1,string &s2){
-        
+    
+    
+    //int mx = -1e9;
+    
+    bool f(string &s1,string &s2){
         if(s1.size() != s2.size() + 1) return false;
         
         int i = 0;
         int j = 0;
         
-        while(i<s1.size()){
-            
-            if(j<s2.size() and s1[i] == s2[j]){
+        while(i < s1.size()){
+            if(j < s2.size() and s1[i] == s2[j]){
                 i++;
                 j++;
             }
-            else i++;
+            else{
+                i++;
+            }
         }
         
         if(i == s1.size() and j == s2.size()) return true;
-        return false;
+        
+       return false;
     }
     
-    static bool comp(string &s1,string &s2){
-        return s1.size() < s2.size();
+    static bool cmp(string &a,string &b){
+        return a.size() < b.size();
     }
+    
+    
     
     int longestStrChain(vector<string>& words) {
+        sort(words.begin(),words.end(),cmp);
         
-        int len = INT_MIN;
-        sort(words.begin(),words.end(),comp);
+        vector<int> dp(words.size(),1);
         
-        int n = words.size();
-        vector<int> dp(n,1);
-        for(int i = 0;i<n;i++){
+        int ans = -1;
+        
+        for(int i = 0 ;i<words.size();i++){
+            
             for(int j = 0;j<i;j++){
-                if(comapre(words[i],words[j]) && dp[j] + 1 > dp[i]){
+                
+                if(f(words[i],words[j]) and dp[i] < 1 + dp[j]){
                     dp[i] = 1 + dp[j];
                 }
-            }
-            len = max(len,dp[i]);
+                
+            }            
+            ans = max(ans,dp[i]);
         }
-        return len;
+        
+        return ans;
     }
 };
