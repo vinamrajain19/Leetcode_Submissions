@@ -1,41 +1,43 @@
 class Solution {
 public:
-    
-    void dfs(vector<vector<int>>& g,int i,int j){
-        if(i<0 || i>=g.size() || j<0 || j>=g[0].size() || g[i][j] == 0){
-            return;
+    void solve(vector<vector<int>>& board) {
+       
+        if(board.size()==0||board[0].size()==0)return;
+       
+        for(int i=0;i<board[0].size();i++){
+            if(board[0][i]==1){dfs(board,0,i);}
+            if(board[board.size()-1][i]==1){dfs(board,board.size()-1,i);}
         }
-        
-        g[i][j] = 0;
-        
-        dfs(g,i-1,j); //up
-        dfs(g,i,j+1); //right
-        dfs(g,i+1,j); //down
-        dfs(g,i,j-1); //left
+       
+        for(int i=1;i<board.size()-1;i++){
+            if(board[i][0]==1)dfs(board,i,0);
+            if(board[i][board[0].size()-1]==1){dfs(board,i,board[0].size()-1);}
+        }
+       
     }
-
-    int numEnclaves(vector<vector<int>>& g){
-        int m = g.size();
-        int n = g[0].size();
-        for(int i = 0;i<m;i++){
-            if(g[i][0] == 1 ) dfs(g,i,0);
-            if(g[i][n-1] == 1) dfs(g,i,n-1);
-        }
+    
+    
+    void dfs(vector<vector<int>>& board, int i, int j){
+        if(i<0||i>=board.size()||j<0||j>=board[0].size())return;
+        if(board[i][j]!=1)return;
+        board[i][j]= 0;
         
-        for(int i = 0;i<n;i++){
-            if(g[0][i] == 1 ) dfs(g,0,i);
-            if(g[m-1][i] == 1) dfs(g,m-1,i);
-        }
-        
-        int cnt = 0;
-        for(int i = 0;i<m;i++){
-            for(int  j = 0;j<n;j++){
-                if(g[i][j]){
-                    cnt++;
-                }
+        dfs(board,i+1,j);
+        dfs(board,i,j+1);
+        dfs(board,i-1,j);
+        dfs(board,i,j-1);
+        return;
+    }
+    
+    int numEnclaves(vector<vector<int>>& grid) {
+        solve(grid);
+        int ans = 0;
+        for(int i= 0;i<grid.size();i++){
+            for(int j = 0;j<grid[0].size();j++){
+                if(grid[i][j] == 1) ans++;
             }
         }
-        return cnt;
         
-    } 
+        return ans;
+    }
 };
