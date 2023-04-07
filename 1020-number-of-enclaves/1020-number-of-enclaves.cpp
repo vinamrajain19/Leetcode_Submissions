@@ -19,7 +19,9 @@ public:
     
     void dfs(vector<vector<int>>& board, int i, int j){
         if(i<0||i>=board.size()||j<0||j>=board[0].size())return;
+        
         if(board[i][j]!=1)return;
+        
         board[i][j]= 0;
         
         dfs(board,i+1,j);
