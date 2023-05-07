@@ -1,55 +1,39 @@
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> output;
         
-        if(nums.size() < 4) return {};
-        
-        vector<vector<int>> ans;
-        
-        sort(nums.begin(),nums.end());
-        
-        for(int i = 0;i<nums.size();i++){
+        for(int i=0; i<n-3; i++){
             
-            int sum_1 = target - nums[i];
-            
-            for(int j = i+1;j<nums.size();j++){
+            for(int j=i+1; j<n-2; j++){
                 
-                long long  sum_2 = (long long)sum_1 - (long long)nums[j];
+                long long newTarget = (long long)target - (long long)nums[i] - (long long)nums[j];
                 
+                int low = j+1, high = n-1;
                 
-                int x = j+1;
-                int y = nums.size()-1;
-                
-                while(x < y){
-                    long long sum = (long long)nums[x] + (long long)nums[y];
-                    
-                    if(sum_2 == sum){
-                        
-                        ans.push_back({nums[i],nums[j],nums[x],nums[y]});
-                        
-                        while(x < y and nums[x] == nums[x+1]){
-                            x++;
-                        }
-                        
-                        while(x < y and nums[y] == nums[y-1]){
-                            y--;
-                        }
-                        
-                        x++;
-                        y--;
+                while(low < high){
+                    if(nums[low] + nums[high] < newTarget){
+                        low++;
                     }
-                    else if(sum_2 < sum) y--;
-                    else x++;
+                    else if(nums[low] + nums[high] > newTarget){
+                        high--;
+                    }
+                    else{
+                        output.push_back({nums[i], nums[j], nums[low], nums[high]});
+                        int tempIndex1 = low, tempIndex2 = high;
+                        while(low < high && nums[low] == nums[tempIndex1]) low++;
+                        while(low < high && nums[high] == nums[tempIndex2]) high--;
+                    }
                 }
                 
-               while(j + 1 < nums.size() && nums[j + 1] == nums[j]) ++j;
-            }    
+                while(j+1 < n && nums[j] == nums[j+1]) j++;
+            }
             
-            while(i + 1 < nums.size() && nums[i + 1] == nums[i]) ++i;
-
+            while(i+1 < n && nums[i] == nums[i+1]) i++;
         }
         
-        return ans;
-        
+        return output;
     }
 };
