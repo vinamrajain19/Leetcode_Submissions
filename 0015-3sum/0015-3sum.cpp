@@ -1,46 +1,31 @@
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-         vector<vector<int>> res;
-        //sort
-        sort(nums.begin(),nums.end());
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
         
-        for( int i = 0; i < nums.size();i++){
-           // initialize left and right 
-           //to handle duplicates
-            if(i > 0 && nums[i]==nums[i-1])
-                continue;
-            
-             int l = i + 1; 
-            int r = nums.size() - 1; 
-            int x = nums[i]; 
-            
-            while (l < r) 
-            {    
-                if (x + nums[l] + nums[r] == 0) {
-                    res.push_back(vector<int>{x,nums[l],nums[r]});
-                    //to handle duplicates
-                    while (l<r && nums[l] == nums[l+1]) 
-                        l++;
-                    // to handle duplicates
-                    while (l<r && nums[r] == nums[r-1]) 
-                        r--;
-                    l++;
-                    r--;
-                    //break;
+        vector<vector<int>> output;
+        
+        for(int i=0; i<n-1; i++){
+            int low = i+1, high = n-1;
+            while(low < high){
+                if(nums[i] + nums[low] + nums[high] < 0){
+                    low++;
                 }
-                // If sum of three elements is less 
-                // than zero then increment in left 
-                else if (x + nums[l] + nums[r] < 0) 
-                    l++; 
-  
-                // if sum is greater than zero than 
-                // decrement in right side 
-                else
-                    r--; 
+                else if(nums[i] + nums[low] + nums[high] > 0){
+                    high--;
+                }
+                else{
+                    output.push_back({nums[i], nums[low], nums[high]});
+                    int tempIndex1 = low, tempIndex2 = high;
+                    while(low < high && nums[low] == nums[tempIndex1]) low++;
+                    while(low < high && nums[high] == nums[tempIndex2]) high--;
+                }
             }
-                
+            
+            while(i+1 < n && nums[i] == nums[i+1]) i++;
         }
-        return res;
-   }
+        
+        return output;
+    }
 };
