@@ -1,54 +1,30 @@
 class Solution {
 public:
-    vector<int> v;
-    void dfs(int node,vector<int>adj[],vector<int>&vis){
-        vis[node]=1;
-        v.push_back(node);
-        for(auto x: adj[node]){
-            if(!vis[x]){
-                dfs(x,adj,vis);
+    void dfs(vector<vector<int>> &graph,int currNode,vector<bool> &vis,int &nodeCount,int &edgeCount) {
+        vis[currNode] = true;
+        nodeCount += 1;
+        edgeCount += graph[currNode].size();
+        for(int nextNode : graph[currNode]) {
+            if(!vis[nextNode]) {
+                dfs(graph,nextNode,vis,nodeCount,edgeCount);
             }
         }
     }
-    int countCompleteComponents(int n, vector<vector<int>>& edge) {
-        vector<int> adj[n];
-        for(auto edges: edge){
-            adj[edges[0]].push_back(edges[1]);
-            adj[edges[1]].push_back(edges[0]);
+    int countCompleteComponents(int n, vector<vector<int>>& edges) {
+        vector<vector<int>> graph(n);
+        for(vector<int> &edge : edges) {
+            graph[edge[0]].push_back(edge[1]);
+            graph[edge[1]].push_back(edge[0]);
         }
-        
-        vector<int> vis(n,0);
-        vector<vector<int>>connected;
-        for(int i=0;i<n;i++){
-            if(!vis[i]){
-                dfs(i,adj,vis);
-                connected.push_back(v);
-                v.clear();
+        int ans = 0;
+        vector<bool> vis(n);
+        for(int i = 0; i < n; i += 1) {
+            int nodeCount = 0,edgeCount = 0;
+            if(!vis[i]) {
+                dfs(graph,i,vis,nodeCount,edgeCount);
+                if(nodeCount*(nodeCount - 1) == edgeCount) ans += 1;
             }
         }
-        int cnt=0;
-        vector<int> degree(n,0);
-        for(int i=0;i<n;i++){
-            for(auto x: adj[i]){
-                degree[x]++;
-            }
-        }
-        for(auto x: connected){
-            
-            bool f=0;
-            for(auto p: x){
-                if(degree[p]!=x.size()-1){
-                    f=1;
-                }
-            }
-            if(f==0){
-                cnt++;
-            }
-        }
-        
-        //sabki degree n-1 honi chahiye
-        return cnt;
-        
-        
+        return ans;
     }
 };
