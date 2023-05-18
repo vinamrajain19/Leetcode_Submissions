@@ -25,17 +25,22 @@ public:
         }
         
         for(int i = 0;i<row.size();i+=2){
-            unnion(row[i+1],row[i]);
+            unnion(i+1,i);
         }
         
         int ans = 0;
         
         for(int i = 0;i<row.size();i+=2){
-            if(find(i) != find(i+1)){
+            if(find(row[i]) != find(row[i+1])){
                 ans++;
-                unnion(i,i+1);
+                unnion(row[i],row[i+1]);
             }
         }
+        
+        cout<<par[0];
+        cout<<par[1];
+        cout<<par[2];
+        cout<<par[3];
         
         return ans;
     }
