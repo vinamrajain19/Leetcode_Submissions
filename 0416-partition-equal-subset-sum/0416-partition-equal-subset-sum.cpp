@@ -1,35 +1,47 @@
 class Solution {
 public:
-    
-    int dp[201][20003];
-    bool f(vector<int> &nums,int idx,int sum){
-        if(sum == 0) return true;
+    bool canPartition(vector<int>& nums) {
+        if(nums.size() == 1) return false;
         
-        if(idx == nums.size()){
-            if(sum == 0) return true;
+        int n=nums.size();
+        int sum=0;
+        
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+        }
+        
+        if(sum%2!=0){
             return false;
         }
         
-        if(dp[idx][sum]  != -1) return dp[idx][sum];
+        sum=sum/2;
         
-        
-        bool a = false;
-        if(nums[idx] <= sum){
-            a = f(nums,idx+1,sum-nums[idx]);
+        vector<vector<int>> dp(n,vector<int>(sum+1,0));
+        for(int i=0;i<n;i++){
+            dp[i][0]=true;
         }
-        bool b = f(nums,idx+1,sum);
         
-        return dp[idx][sum] =  a or b;
-    }
-    
-    
-    bool canPartition(vector<int>& nums) {
-        int sum = accumulate(nums.begin(),nums.end(),0);
+        if(nums[0] <= sum)
+            dp[0][nums[0]] = true;
         
-        if(sum % 2 == 1) return false;
+       
         
-        memset(dp,-1,sizeof(dp));
+        for(int i=1;i<n;i++){
+            for(int j=1;j<=sum;j++){
+                bool nottake=dp[i-1][j];
+                bool take=false;
+                if(nums[i]<=j){
+                    take=dp[i-1][j-nums[i]];
+                }
+                dp[i][j]=nottake||take;
+            }
+        }
+
+
         
-        return f(nums,0,sum/2);
+        return dp[n-1][sum];
+
+        
+        
     }
 };
