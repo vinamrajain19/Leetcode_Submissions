@@ -1,30 +1,30 @@
 class Solution {
 public:
-    
-    long long dp[105][105];
-    
-    long long f(int n,vector<int> &cuts,int i,int j){
-        
-        if(i > j) return 0;
+    int f(int n, vector<int>& cuts,int i,int j,vector<vector<int>> &dp){
+        if(i>j) return 0;
         
         if(dp[i][j] != -1) return dp[i][j];
         
-        
-        long long ans = INT_MAX;
+        int mn = 1e9;
         for(int k = i;k<=j;k++){
-            long long temp = cuts[j+1] -  cuts[i-1] + f(n,cuts,i,k-1) + f(n,cuts,k+1,j);
-            ans = min(ans,temp);
+            
+            int temp = cuts[j+1] - cuts[i-1] + f(n,cuts,i,k-1,dp) + f(n,cuts,k+1,j,dp);
+            mn = min(mn,temp);
         }
         
-        return dp[i][j] =  ans;
+        return dp[i][j] = mn;
     }
     
     int minCost(int n, vector<int>& cuts) {
-        memset(dp,-1,sizeof(dp));
+        
         int x = cuts.size();
-         cuts.push_back(n);
-        cuts.insert(cuts.begin(),0);
+        
+        cuts.push_back(0);
+        cuts.push_back(n);
         sort(cuts.begin(),cuts.end());
-        return f(n,cuts,1,x);
+        
+        vector<vector<int>> dp(x+1,vector<int>(x+1,-1));
+        
+        return f(n,cuts,1,x,dp);
     }
 };
