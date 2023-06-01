@@ -1,38 +1,25 @@
 class Solution {
 public:
-    
-    
-    vector<vector<int>> insert(vector<vector<int>>& in, vector<int>& ni) {
+    vector<vector<int>> insert(vector<vector<int>>& it, vector<int>& n) {
         vector<vector<int>> ans;
         
-        int i = 0;
-        
-        
-        // case 1 till where have not had the pos for new interval;
-        while(i < in.size() and in[i][1] <  ni[0]){
-            ans.push_back(in[i]);
-            i++;
+        for(int i = 0;i<it.size();i++){
+            
+            if(it[i][0] > n[1]){
+                ans.push_back(n);
+                n = it[i];
+            }
+            
+            else if(it[i][1] < n[0]){
+               ans.push_back(it[i]); 
+            }
+            else if(it[i][1] >= n[0] or it[i][0] <= n[1]){
+                n[0] = min(n[0],it[i][0]);
+                n[1] = max(n[1],it[i][1]);
+            }
         }
         
-        
-        // case 2-> we have got the pos for new interval
-        while(i < in.size() and in[i][0] <= ni[1]){
-            ni[0] = min(in[i][0],ni[0]);
-            ni[1] = max(in[i][1],ni[1]);
-            i++;
-        }
-        
-        ans.push_back(ni);
-        
-        // case 3 -> now put all in as it is
-        
-        while(i < in.size()){
-            ans.push_back(in[i]);
-            i++;
-        }
-        
+        ans.push_back(n);
         return ans;
-        
-        
     }
 };
