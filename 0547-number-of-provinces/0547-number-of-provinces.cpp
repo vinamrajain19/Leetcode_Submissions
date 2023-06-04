@@ -1,9 +1,9 @@
 class Solution {
 public:
+    
     vector<int> par;
     int find(int u){
         if(u == par[u]) return u;
-        
         return par[u] = find(par[u]);
     }
     
@@ -15,30 +15,29 @@ public:
         par[v] = u;
     }
     
-    int numProvinces(vector<vector<int>> adj, int V) {
-        // code here
-        par.resize(V+1,0);
-        for(int i = 1;i<=V;i++) par[i] = i;
+    int findCircleNum(vector<vector<int>>& is) {
+        int n = is.size();
         
-        for(int i = 0;i<adj.size();i++){
-            for(int j = 0;j<adj[0].size();j++){
-                if(adj[i][j] == 1){
-                    if(find(i+1) != find(j+1)){
-                        unnion(i+1,j+1);
-                    }
+        par.resize(n+1);
+        
+        for(int i = 1;i<=n;i++){
+            par[i] = i;
+        }
+        
+        for(int i = 0;i<n;i++){
+            for(int j = 0;j<n;j++){
+                if(i == j) continue;
+                if(is[i][j] and find(i+1) != find(j+1)){
+                    unnion(i+1,j+1);
                 }
             }
         }
         
-        unordered_map<int,int> m;
-        for(int i = 1;i<=V;i++){
-            m[find(i)]++;
+        int ans = 0;
+        for(int i = 1;i<=n;i++){
+            if(par[i] == i) ans++;
         }
         
-        return m.size();
-    }
-    
-    int findCircleNum(vector<vector<int>>& isConnected) {
-        return numProvinces(isConnected,isConnected.size());
+        return ans;
     }
 };
