@@ -1,37 +1,34 @@
 class Solution {
 public:
     
-    bool f(vector<int> &nums,int k,int mid){
-        int x = 0;
-        int grp = 1;
-        
-        for(int i = 0;i<nums.size();i++){
-            if(x + nums[i] <= mid){
-                x += nums[i];
-            }
-            else{
-                grp++;
-                if(grp > k or nums[i] > mid) return false;
-                x = nums[i];
-            }
-        }
-        
-        return true;
-    }
+    bool ispossible(vector<int> &nums,int curr,int m){
+		int total=1;
+		int sum=0;
+		for(int i=0;i<nums.size();i++){
+		   sum+=nums[i];
+		   if(sum>curr){
+			   sum=nums[i];
+			   total++;
+		   }
+			if(nums[i]>curr) return false;
+		}
+		return total<=m;
+	}
+    
     
     int splitArray(vector<int>& nums, int k) {
         int sum = 0;
         for(auto it : nums) sum += it;
         
-        int s = 0;
+        int s = *max_element(nums.begin(),nums.end());
+        
         int e = sum;
         
-        
-        int ans = -1;
+        int ans = 0;
         while(s <= e){
-            int m = (s+e) >> 1;
+            int m = (s+e)/2;
             
-            if(f(nums,k,m)){
+            if(ispossible(nums,m,k)){
                 ans = m;
                 e = m-1;
             }
