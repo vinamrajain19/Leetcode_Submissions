@@ -21,7 +21,7 @@ public:
                 x -=  diff;
                 ans++;
             }
-            else break;
+            //else break;
             
             q.pop();
         }
