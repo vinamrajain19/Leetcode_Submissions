@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-      // T.C. = O(k*(2^(n))
+      //Time complexity: O(k*2^n), for every subset we traverse the whole array and make two recursive calls almost in each traversal
       
       bool canPartitionKSubsets(vector<int>& nums, int k) {
         int sum = 0;
