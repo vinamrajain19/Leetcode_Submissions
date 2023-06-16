@@ -1,53 +1,50 @@
-// If sum(nums[]) < (2 * k) then, we can't make the partition.
- // Now, calculating the partitions in which sum of both sequences is greater than k will take more space  // i.e., DP[sizeof nums][total sum of elements].
+// Basic idea is counting subsets with sum>= k but since nums[i]<=1e9 that will take too much time. Since we know k<=1000 we can count subsets with sum<=k.
 
-// Thus, we can find the sequences whose sum is less than k and the final answer will be all sequences of // nums[] - sequences with sum < k. This is possible because in the 1st step we made ensure that sum(nums[]) // >= (2 * k) which means that if one sequence of partition has sum less than k, other would have sum greater // than k. Here less space is required i.e., Dp[sizeof nums][k + 1].
-
-
-
+//Counting subsets with both partitions having sum>=k is equivalent to counting subsets with ONE OF THE PARTITION with sum<k and subtracting it from total number of subsets(2^n).
 
 
 class Solution {
-public:
-    typedef long long ll;
-    const int mod = 1E9 + 7;
-    ll total = 0;
-    vector<vector<int>> dp;
-    
-    ll cal(int i, ll sum, vector<int>& nums, int k) {
-        if(sum > k) {
-            return 0;
-        }
-        if(i == nums.size()) {
-            return sum < k ? 1 : 0;
-        }
-        if(dp[i][sum] != -1)
-            return dp[i][sum];
-        ll take = cal(i + 1, sum + nums[i], nums, k) % mod;
-        ll nake = cal(i + 1, sum, nums, k) % mod;
-        return dp[i][sum] = (take + nake) % mod;
+    using ll = long long;
+    const ll MOD = 1e9 + 7;
+
+    // Basic Knapsack -> Counts subsets with sum less than k
+    ll part(ll ind, vector<int>& nums, ll sum, int k, vector<vector<ll>>& dp) {
+        if (sum >= k) return 0;
+        if (ind == nums.size()) return 1;
+        if (dp[ind][sum] != -1) return dp[ind][sum];
+
+        ll take = part(ind + 1, nums, sum + nums[ind], k, dp);
+        ll notTake = part(ind + 1, nums, sum, k, dp);
+
+        return dp[ind][sum] = (take % MOD + notTake % MOD) % MOD;
     }
-    
+
+public:
     int countPartitions(vector<int>& nums, int k) {
-        int n = nums.size();
-        for(auto it : nums)
-            total += it;
-        if(total < (2 * k))
-            return 0;
-        
-        dp = vector<vector<int>> (n, vector<int> (k + 1, -1));
-        ll x = cal(0, 0, nums, k);
-        x--;           // x also include count of empty sequence i.e., {}
-        ll y = 2;      // Total number of sequences
-        
-        for(int i = 2; i <= n; i++) {
-            y *= 2; y %= mod;
+        ll n = nums.size();
+
+        // Checking if the sum of array > 2 * k,
+        // array can never be partitioned if sum is less than 2 * k
+        ll sum = accumulate(begin(nums), end(nums), 0LL);
+        if (sum < 2 * k) return 0;
+
+        vector<vector<ll>> dp(n, vector<ll>(k + 1, -1));
+
+        // Calculating total number of subsets i.e. 2^n
+        ll totalSubsets = 1;
+        for (int i = 1; i <= n; i++) {
+            totalSubsets = (totalSubsets * 2) % MOD;
         }
+
+        // After calculating the number of partitions with a sum less than k,
+        // the solution multiplies the result by 2 to account for the fact
+        // that the same partition can be counted as either the left group or
+        // the right group.
+
+        // For example, ([1,2,3],[4]) & ([4],[1,2,3]) should be counted separately
+        // BUT the part function only considers ([4],[1,2,3])
         
-        y -= 2;        // Subtracting sequences whose partition is not possible i.e., {} and {all elements of nums[]}
-        
-        ll ans = ((y - ((2 * x) % mod)) + mod) % mod;
-        
-        return ans;
+        ll validSubsets = (totalSubsets - 2 * part(0, nums, 0, k, dp) + MOD) % MOD;
+        return validSubsets;
     }
 };
