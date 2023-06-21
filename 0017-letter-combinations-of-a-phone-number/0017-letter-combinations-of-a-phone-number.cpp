@@ -1,6 +1,6 @@
 class Solution {
 private:
-    void f(string digits, vector<string>& output, string temp, vector<string>& pad, int index){
+    void f(string digits, vector<string>& output, string &temp, vector<string>& pad, int index){
         if(index == digits.size()){
             output.push_back(temp);
             return;
