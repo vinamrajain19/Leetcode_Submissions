@@ -1,32 +1,33 @@
 class Solution {
 public:
-    long long minCost(vector<int>& nums, vector<int>& cost) {
-        long long l=0;
-        long long r = 1e6;
-        
-        
-        long long res1=0,res2=0;
-        
-        
-        while(l<r){
-            
-            long long m=l+((r-l)/2);
-            res1=0,res2=0;
-            
-            for(int i=0 ; i<nums.size() ; i++){
-                res1+=(long long)abs(m-nums[i])*cost[i];
-                res2+=(long long)abs(m+1-nums[i])*cost[i];
-            }
-            
-            if(res2>res1){
-                r=m;
-            }
-            
-            else{
-                l=m+1;
-            }
+    long long helper(vector<int>& nums, vector<int>& cost, int all) {
+        long long totalCost = 0LL;
+        for (int i = 0; i < nums.size(); i++) {
+            totalCost += 1LL * abs(nums[i] - all) * cost[i];
         }
-        
-        return min(res1,res2);
+        return totalCost;
     }
+
+long long minCost(vector<int>& nums, vector<int>& cost) {
+    int left = nums[0];
+    int right = nums[0];
+    for (int i : nums) {
+        left = min(left, i);
+        right = max(right, i);
+    }
+    long long ans = 0;
+    while (left < right) {
+        int mid = (left + right) / 2;
+        long long cost1 = helper(nums, cost, mid);
+        long long cost2 = helper(nums, cost, mid + 1);
+        if (cost1 > cost2) {
+            left = mid + 1;
+            ans = cost2;
+        } else {
+            right = mid;
+            ans = cost1;
+        }
+    }
+    return ans;
+}
 };
