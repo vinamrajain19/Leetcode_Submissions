@@ -3,7 +3,7 @@ public:
     
     /* Idea:
 We need to find the last day where it's possible to pass.
-So we use binary search.
+ So we use binary search.
 If for day i we can walk from top to bottom, then maybe we can walk also on a later day. So lo = mid + 1.
 If we can't walk on day i, then we won't be able to walk on any later day and we have to check earlier days. So hi = mid - 1.
 For checking if it's possible to wal k on day i, we will use BFS.
