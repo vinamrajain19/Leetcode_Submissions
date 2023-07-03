@@ -5,6 +5,7 @@ public:
         if(nums.size() == 0) return 0;
         
         unordered_set<int> s;
+        
         for(auto it : nums) s.insert(it);
         
         int mx = 0;
