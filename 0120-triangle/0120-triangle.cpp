@@ -1,24 +1,20 @@
 class Solution {
 public:
+    int minimumTotal(vector<vector<int>>& t) {
+        vector<vector<int>> dp(t.size(),vector<int>(t.size(),-1));
+        return help(0,0,t.size(),t.size(),t,dp);
+    }
     
-    int dp[201][201];
-    int f(vector<vector<int>> & t,int i,int j){
+    int help(int i,int j,int n,int m,vector<vector<int>>& t,vector<vector<int>> &dp){
+        if(i == m-1) return dp[i][j] = t[i][j];
         
-       // if(i >= t.size() or j >= t[0].size()) return 1e9;
-        
-        if(i == t.size()-1) return t[i][j];
+        if(i>=m or j>=n) return 1e9;
         
         if(dp[i][j] != -1) return dp[i][j];
         
-        int a = t[i][j] + f(t,i+1,j);
-        int b = t[i][j] + f(t,i+1,j+1);
+        int d = t[i][j] + help(i+1,j,m,n,t,dp);
+        int dia = t[i][j] + help(i+1,j+1,m,n,t,dp);
         
-        return dp[i][j] =  min(a,b);
-    
-    }
-    
-    int minimumTotal(vector<vector<int>>& t) {
-        memset(dp,-1,sizeof(dp));
-        return f(t,0,0);
+        return dp[i][j] = min(d,dia);
     }
 };
