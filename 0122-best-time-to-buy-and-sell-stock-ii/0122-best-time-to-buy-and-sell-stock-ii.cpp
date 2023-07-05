@@ -1,23 +1,26 @@
 class Solution {
 public:
     
-    int dp[30003][4];
-    
-    int f(vector<int> &p,int idx,int buy){
-        if(idx >= p.size()) return 0;
+    int help(vector<int> &p,int idx,int buy,vector<vector<int>> &dp){
+        if(idx == p.size()) return 0;
         
         if(dp[idx][buy] != -1) return dp[idx][buy];
         
-        
+        //buy -> buy or not buy -> in buy -> p -> negative -> add in profit
         if(buy){
-            return dp[idx][buy] =  max(-p[idx] + f(p,idx+1,0) , f(p,idx+1,1));
+            return dp[idx][buy] = max(-p[idx] + help(p,idx+1,1-buy,dp), help(p,idx+1,buy,dp));
         }
+        
+        //sell -> sell it or not sell -> sell -> positive -> add in profit
         else{
-            return dp[idx][buy] =  max(p[idx] + f(p,idx+1,1) , f(p,idx+1,0));
+            return dp[idx][buy] = max(p[idx] + help(p,idx+1,1-buy,dp), help(p,idx+1,buy,dp));
         }
     }
-    int maxProfit(vector<int>& prices) {
-        memset(dp,-1,sizeof(dp));
-        return f(prices,0,1);
+    int maxProfit(vector<int>& p) {
+        int n = p.size();
+        
+        vector<vector<int>> dp(n,vector<int>(2,-1));
+        
+        return help(p,0,1,dp);
     }
 };
