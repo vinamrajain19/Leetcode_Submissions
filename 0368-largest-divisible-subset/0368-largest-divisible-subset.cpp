@@ -1,45 +1,28 @@
 class Solution {
 public:
+    
+    
+    
     vector<int> largestDivisibleSubset(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        vector<int> ans;
-        
-        vector<int> dp(nums.size(),1);
-        vector<int> hash(nums.size(),1);
-        
-        
-        int mx = -1;
-        int lastindex = -1;
-        
-        for(int i = 0;i<nums.size();i++){
-            
-            hash[i] = i;
-            
-            
-            for(int j = 0;j<i;j++){
-                if((nums[i] % nums[j]) == 0 and (dp[i] < 1 + dp[j])){
-                    dp[i] = 1 + dp[j];
-                    //cout<<nums[j]<<" ";
-                    hash[i] = j;
-                 }
+        sort(nums.begin(), nums.end());
+        int n = nums.size(), maxIndex = 0, ans = INT_MIN;
+        vector<int> dp(n, 1), parent(n, -1), sol; //dp[i] = maxLength of subset till ith     index & parent[i] is used to store the index of element included before  we include ith element
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < i; j++) {
+                if((nums[j] % nums[i] == 0 || nums[i] % nums[j] == 0) && dp[i] < dp[j] + 1) {
+                    dp[i] = dp[j] + 1;
+                    parent[i] = j;
+                }
             }
-            
-            //cout<<temp.size() <<" ";
-            
-            if(dp[i] > mx){
-                //ans = temp;
-                mx = dp[i];
-                lastindex = i;
+            if(dp[i] > ans) { //update ans and index of last element included when larger subset found
+                ans = dp[i];
+                maxIndex = i;
             }
         }
-        
-        ans.push_back(nums[lastindex]);
-        
-         while(hash[lastindex] != lastindex){ // till not reach the initialization value
-            lastindex = hash[lastindex];
-            ans.push_back(nums[lastindex]);    
-         }
-        
-        return ans;
+        while(maxIndex != -1) { //push the subset element one by one
+            sol.push_back(nums[maxIndex]);
+            maxIndex = parent[maxIndex];
+        }
+        return sol;
     }
 };
