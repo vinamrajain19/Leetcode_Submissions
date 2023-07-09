@@ -1,37 +1,30 @@
 class Solution {
 public:
     
-    
-    
-    int f(vector<int> &c,int amt,int idx,vector<vector<int>> &dp){
+    int dp[13][10001];
+    int f(vector<int> &c,int t,int i){
         
-        if(amt < 0) return 1e9;
+        if(t < 0) return 1e9;
         
-        if(amt == 0) return 0;
+        if(t == 0) return 0;
         
-        if(idx == c.size()-1){
-            if(amt % c[idx] == 0) return (amt/c[idx]);
+        if(i == c.size()-1){
+            if(t%c[i] == 0) return t/c[i];
             return 1e9;
         }
         
-        if(dp[idx][amt] != -1) return dp[idx][amt];
+        if(dp[i][t] != -1) return dp[i][t];
         
-        int t = 1e9;
+        int a = 1 + f(c,t-c[i],i);
+        int b = f(c,t,i+1);
         
-        if(c[idx] <= amt){
-            t = 1 + f(c,amt-c[idx],idx,dp);
-        }
-
-        int no = f(c,amt,idx+1,dp);
-        
-        return dp[idx][amt] =  min(t,no);
+        return dp[i][t] =  min(a,b);
     }
-     
-    int coinChange(vector<int>& c, int amt) {
-        vector<vector<int>> dp(c.size(),vector<int>(amt+1,-1));
-        int ans = f(c,amt,0,dp);
+    
+    int coinChange(vector<int>& coins, int amount) {
+        memset(dp,-1,sizeof(dp));
         
-        if(ans >= 1e9) return -1;
-        return ans;
+        int ans =  f(coins,amount,0);
+        return ans >= 1e9 ? -1 : ans;
     }
 };
