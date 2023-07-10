@@ -1,45 +1,45 @@
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        ListNode* prev = nullptr;
-        ListNode* temp;
-        while (head) {
-            // Keep the next node.
-             temp = head->next;
-            // reverse the link
-            head->next = prev;
-            // Update the previous node and the current node.
-            prev = head;
-            head = temp;
-        }
-        return prev;
+    ListNode* reversekro(ListNode *head){
+    ListNode* curr = head,*prev = NULL,*next = NULL;
+    while(curr){
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
     }
+    head = prev;
+    return head;
+}
 
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* r1 = reverseList(l1);
-        ListNode* r2 = reverseList(l2);
-
-        int totalSum = 0;
-        int carry = 0;
-        ListNode* ans = new ListNode();
-        while (r1 || r2) {
-            if (r1) {
-                totalSum += r1->val;
-                r1 = r1->next;
-            }
-            if (r2) {
-                totalSum += r2->val;
-                r2 = r2->next;
-            }
-
-            ans->val = totalSum % 10;
-            carry = totalSum / 10;
-            ListNode* head = new ListNode(carry);
-            head->next = ans;
-            ans = head;
-            totalSum = carry;
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+   if(!l1 and !l2)return NULL;
+    if(!l1)return l2;
+    if(!l2)return l1;
+    l1 = reversekro(l1);
+    l2 = reversekro(l2);
+    ListNode* headd = new ListNode(0);
+    ListNode* temp = headd;
+    int carry =0;
+    while(l1 or l2 or carry){
+        int sum =0;
+        if(l1){
+            sum+=l1->val;
+            l1 = l1->next;
         }
-
-        return carry == 0 ? ans->next : ans;
+        if(l2){
+            sum+=l2->val;
+            l2 = l2->next;
+        }
+        sum+=carry;
+        carry = sum/10;
+        ListNode* newnode = new ListNode(sum%10);
+        temp->next = newnode;
+        temp = temp->next;
+        
     }
+    headd = reversekro(headd->next);
+    return headd;
+    
+}
 };
