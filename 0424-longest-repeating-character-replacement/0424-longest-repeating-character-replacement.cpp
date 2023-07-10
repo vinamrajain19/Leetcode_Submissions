@@ -8,7 +8,7 @@ public:
             int i=0,j=0;
             int cnt=0;
             int len=k;
-            char c=char('A'+x);
+            char c = char('A'+x);
             while(j<n)
             {
                 if(s[j]!=c)
