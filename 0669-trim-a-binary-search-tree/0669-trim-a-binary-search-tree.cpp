@@ -16,7 +16,7 @@ public:
     
     
     TreeNode* trimBST(TreeNode* root, int low, int high) {
-        if(root == NULL) return root;
+        if(root == NULL) return NULL;
         
         // root < l -> means all val left of root will also be less than then we can return root -> right
         if(root->val < low){
