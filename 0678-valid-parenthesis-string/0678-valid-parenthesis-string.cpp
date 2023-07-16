@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool checkValidString(string s) {
+ bool checkValidString(string s) {
         
         //stack of int as we are going to store indices of parenthesis and star 
         //as we have to check wheather string can be converted to valid string or not
