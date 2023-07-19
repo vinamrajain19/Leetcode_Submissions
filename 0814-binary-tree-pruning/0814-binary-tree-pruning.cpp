@@ -13,7 +13,7 @@ class Solution {
 public:
     TreeNode* pruneTree(TreeNode* root) {
     
-    if(!root) return root;
+    if(!root) return NULL;
     
     root->left = pruneTree(root->left);       //postorder traversal
     root->right = pruneTree(root->right);
