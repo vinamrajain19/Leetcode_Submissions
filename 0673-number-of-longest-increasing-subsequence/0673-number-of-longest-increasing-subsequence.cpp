@@ -1,34 +1,31 @@
 class Solution {
 public:
-    int findNumberOfLIS(vector<int>& nums) {
-        vector<int> dp(nums.size(),1);
-        vector<int> c(nums.size(),1);
-        int mx = -1e9;
+    int findNumberOfLIS(vector<int>& arr) {
+        int n = arr.size();
         
-        for(int i = 0;i<nums.size();i++){
+        vector<int> dp(n,1),cnt(n,1);
+        int ans = INT_MIN;
+        for(int i = 0;i<n;i++){
             for(int j = 0;j<i;j++){
-                if(nums[i] > nums[j] and dp[i] < 1 + dp[j]){
+                if(arr[j] < arr[i] and 1 + dp[j] > dp[i]){
                     dp[i] = 1 + dp[j];
-                    c[i] = c[j];
+                    //inherit
+                    cnt[i] = cnt[j];
                 }
-                else if(nums[i] > nums[j] and dp[i] == 1 + dp[j]){
-                    c[i] += c[j];
+                else if (arr[j] < arr[i] and 1 + dp[j] == dp[i]){
+                    //increase the count
+                    cnt[i] += cnt[j];
                 }
             }
-            
-            mx = max(mx,dp[i]);
+            ans = max(ans,dp[i]);
         }
         
-        int ans = 0;
-        
-        
-        for(int i = 0;i<nums.size();i++){
-            if(dp[i] == mx){
-                ans += c[i];
+        int no = 0;
+        for(int i = 0;i<n;i++){
+            if(dp[i] == ans){
+                no += cnt[i];
             }
         }
-        
-        return ans;
-        
+        return no;
     }
 };
