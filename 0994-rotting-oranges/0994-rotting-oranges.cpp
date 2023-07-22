@@ -1,69 +1,56 @@
+
 class Solution {
 public:
+   
+    
     int orangesRotting(vector<vector<int>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
         
-        vector<int> dx = {-1,0,1,0};
-        vector<int> dy = {0,1,0,-1};
-        
-        queue<pair<int,int>> q;
-        
-        
-        int fresh = 0;
-        for(int i = 0;i<m;i++){
-            for(int j = 0;j<n;j++){
+       queue<pair<int,int>> q;
+       int fresh = 0;
+        for(int i = 0;i<grid.size();i++){
+            for(int j = 0;j<grid[0].size();j++){
+                if(grid[i][j] == 2) q.push({i,j});
                 if(grid[i][j] == 1) fresh++;
-            }
-        }
-        
-        for(int i = 0;i<m;i++){
-            for(int j = 0;j<n;j++){
-                if(grid[i][j] == 2){
-                    q.push({i,j});
-                }
             }
         }
         
         if(fresh == 0) return 0;
         
-        
         int ans = 0;
-        
-        while(q.size()){
-            
-            int t = q.size();
-            
-           // ans++;
+        while(q.size() != 0){
+            int n = q.size();
             if(fresh == 0) return ans;
-            
-            while(t--){
+            while(n--){
                 int x = q.front().first;
-                int y = q.front().second;
-        
-            
-            q.pop();
-            
-            for(int i = 0;i<=3;i++){
-                int nx = x + dx[i];
-                int ny = y + dy[i];
-                
-                if(nx < 0 or ny < 0 or  nx >= m or ny >= n or grid[nx][ny] == 2 or grid[nx][ny] == 0) continue;
-                
-                if(grid[nx][ny] == 1){
+                int  y = q.front().second;
+                q.pop();
+                if(x > 0 and grid[x-1][y] == 1){
+                    grid[x-1][y] = 2;
+                    q.push({x-1,y});
                     fresh--;
-                    grid[nx][ny] = 2;
-                    q.push({nx,ny});
+                }
+                
+                if(y > 0 and grid[x][y-1] == 1){
+                    grid[x][y-1] = 2;
+                    q.push({x,y-1});
+                    fresh--;
+                }
+                
+                if(x < grid.size() - 1 and grid[x+1][y] == 1){
+                    grid[x+1][y] = 2;
+                    q.push({x+1,y});
+                    fresh--;
+                }
+                
+                if(y < grid[0].size() - 1 and grid[x][y+1] == 1){
+                    grid[x][y+1] = 2;
+                    q.push({x,y+1});
+                    fresh--;
                 }
             }
-            
-            }
-            
-            ans++;
-            
+            if(q.size() != 0) ans++;
         }
-        
+       // if(fresh == 0) return ans;
         return -1;
-        
     }
 };
