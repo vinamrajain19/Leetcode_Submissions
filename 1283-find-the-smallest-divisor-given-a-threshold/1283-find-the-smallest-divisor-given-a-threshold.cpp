@@ -1,27 +1,28 @@
 class Solution {
 public:
     int smallestDivisor(vector<int>& nums, int th) {
+        sort(nums.begin(),nums.end());
         int s = 1;
-        int e = *max_element(nums.begin(),nums.end());
+        int e = (int)1e6;
         
-        int ans = 0;
-        
-        while(s <= e){
-            int m = (s+e)/2;
-            int cnt = 0;
+        int ans= 0;
+        while(s<=e){
+            int mid = (s+e)/2;
+            int sum = 0;
             
-            for(auto it : nums){
-                cnt += ceil(it * 1.0 /m);
+            for(auto i : nums){
+                if(i % mid == 0) sum += i / mid;
+                else sum += (i / mid) + 1;
             }
             
-            if(cnt <= th){
-                ans = m;
-                e = m-1;
+            if(sum <= th){
+                ans = mid;
+                e = mid-1;
             }
-            else s = m+1;
-            
+            else{
+                s = mid+1;
+            }
         }
-        
         return ans;
     }
 };
