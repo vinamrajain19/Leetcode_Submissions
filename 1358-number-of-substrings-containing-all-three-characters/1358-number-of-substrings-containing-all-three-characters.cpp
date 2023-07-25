@@ -3,33 +3,27 @@ public:
     int numberOfSubstrings(string s) {
         int i = 0;
         int j = 0;
-        
         int ans = 0;
-        
-        map<char,int> m;
+        int a = 0;
+        int b = 0;
+        int c = 0;
         
         while(j < s.size()){
+            if(s[j] == 'a') a++;
+            else if(s[j] == 'b') b++;
+            else if(s[j] == 'c') c++;
             
-            m[s[j]]++;
-            
-            if(m.size() < 3){
-                j++;
+            while(a >= 1 and b >= 1 and c >= 1){
+                ans += (s.size()-j);
+                
+                if(s[i] == 'a') a--;
+                else if(s[i] == 'b') b--;
+                else if(s[i] == 'c') c--;
+                
+                i++;
             }
             
-    
-            else if(m.size() == 3){
-                
-                while(m.size() == 3){
-                    
-                    ans += s.size() - j;
-                    m[s[i]]--;
-                    if(m[s[i]] == 0) m.erase(s[i]);
-                    i++;
-                    
-                }
-                
-                j++;
-            }
+            j++;
         }
         
         return ans;
