@@ -1,32 +1,32 @@
 class Solution {
 public:
-    int maxScore(vector<int>& card, int k) {
-        int n = card.size();
-        long long sum = 0;
-        for(auto it : card) sum += it;
+   
+    
+   int maxScore(vector<int>& c, int k) {
+        int n = c.size();
+        int sz = n - k;
+        int to = accumulate(c.begin(),c.end(),0);
+        
+        if(k == n) return to;
         
         int i = 0;
         int j = 0;
-        long long mn = 1e9;
-        long long x = 0;
-        
-        if(k == n) return sum;
-        
-        while(j < card.size()){
-            x += (long long)card[j];
-            
-            if(j-i+1 < n - k){
+        int sum = 0;
+        int mn = to;
+        while(j<n){
+            sum += c[j];
+            if(j-i+1 < sz){
                 j++;
             }
-            else if(j-i+1 == n-k){
-                mn = min(mn,x);
-                //cout<<mn<<" ";
-                x -= (long long)card[i++];
+            else if(j-i+1 == sz){
+                mn = min(mn,sum);
+                sum -= c[i];
+                i++;
                 j++;
             }
         }
         
-        long long t = sum - mn;
-        return t;
+        return to - mn;
+        
     }
 };
