@@ -1,56 +1,66 @@
 class Solution {
 public:
+    int par[1001]; // parent array to store parent of every node
     
-    int getDistance(vector<int>& v1, vector<int>& v2) {
-        return abs(abs(v1[0]-v2[0]) + abs(v1[1]-v2[1]));
+    // Kruskal uses DSU
+    
+    int find(int a) // find function to find parent of a node
+    {
+        if(par[a] < 0)
+            return a;
+        
+        return par[a] = find(par[a]); // path compression
     }
     
+    // Union function to make one node parent of anthor
+    void Union(int a, int b)
+    {
+        par[a] = b; // here we are making parent of a to b
+    }
     
-    int minCostConnectPoints(vector<vector<int>>& points) {
+    int minCostConnectPoints(vector<vector<int>>& arr) {
+        int n = arr.size(); // extract the size of array
         
+        // Intially all are alone, so everyone is -1
+        for(int i = 0; i < n; i++) par[i] = -1;
         
-        int N = points.size();
+        // define adj vector to store three things
+        // first value store weight where
+        // weight is actually manhattan distance
         
-        vector<vector<pair<int, int>>> graph(points.size());
-        for(int i = 0; i < N; i++) {
-            for(int j = i + 1; j < N; j++) {
-                graph[i].push_back({j, getDistance(points[i], points[j])});
-                graph[j].push_back({i, getDistance(points[i], points[j])});
+        vector<pair<int, pair<int, int>>> adj;
+        
+        // generating graph basically with weights
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = i + 1; j < n; j++)
+            {
+                int weight = abs(arr[i][0] - arr[j][0]) + 
+                             abs(arr[i][1] - arr[j][1]);//manhattan distance
+                
+                adj.push_back({weight, {i, j}});
                 
             }
         }
         
-      
-        vector<int> key(N,INT_MAX);
-        vector<bool> mstSet(N,false);
-    
-        priority_queue< pair<int,int>, vector <pair<int,int>> , greater<pair<int,int>> > pq;
-
-        key[0] = 0; 
-        pq.push({0, 0});
+        // sort on the basis of their edge weight
+        sort(adj.begin(), adj.end());
         
-        while(!pq.empty())
-        {    
-            int u = pq.top().second; 
-            pq.pop(); 
+        int sum = 0; //intially define sum as zero
         
-            mstSet[u] = true; 
-        
-            for (auto it : graph[u]) {
-                int v = it.first;
-                int weight = it.second;
-                if (mstSet[v] == false && weight < key[v]) {
-    		        key[v] = weight; 
-                    pq.push({key[v], v});    
-                }
-            }
+        // for each edge we travel
+        for(int i = 0; i < adj.size(); i++)
+        {
+            int a = find(adj[i].second.first); // first node
+            int b = find(adj[i].second.second); // second node
             
+            if(a != b) // if both parents are not same then add weight
+            {
+                sum += adj[i].first;
+                Union(a, b); // now merge them
+            }
         }
         
-        int sum = 0;
-        for(int i=0;i<N;i++){
-            sum += key[i];
-        }
-        return sum;
+        return sum; // finally return sum
     }
 };
