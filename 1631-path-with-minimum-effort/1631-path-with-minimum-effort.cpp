@@ -70,7 +70,7 @@ public:
         return 0; // if unreachable
     }
     
-    int minimumEffortPath(vector<vector<int>>& h) {
-       return MinimumEffort(h);
+    int minimumEffortPath(vector<vector<int>>& heights) {
+        return MinimumEffort(heights);
     }
 };
